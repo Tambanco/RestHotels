@@ -63,12 +63,12 @@
 				56C3053725446A59005C7E28 /* AppDelegate.swift */,
 				56C3053925446A59005C7E28 /* SceneDelegate.swift */,
 				56C3053B25446A59005C7E28 /* ViewController.swift */,
+				56C3054E2544C433005C7E28 /* CustomCollectionViewCell.swift */,
 				56C3053D25446A59005C7E28 /* Main.storyboard */,
 				56C3054325446A5A005C7E28 /* Assets.xcassets */,
 				56C3054525446A5A005C7E28 /* LaunchScreen.storyboard */,
 				56C3054825446A5A005C7E28 /* Info.plist */,
 				56C3054025446A59005C7E28 /* RestHotels.xcdatamodeld */,
-				56C3054E2544C433005C7E28 /* CustomCollectionViewCell.swift */,
 			);
 			path = RestHotels;
 			sourceTree = "<group>";
