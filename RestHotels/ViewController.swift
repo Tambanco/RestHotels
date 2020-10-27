@@ -20,10 +20,11 @@ struct HotelsInfo: Decodable{
 }
 
 class ViewController: UIViewController, UICollectionViewDataSource {
-
+    
     var hotels = [HotelsInfo]()
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var filtersButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,21 +32,17 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         createSpinnerView()
         collectionView.dataSource = self
         
+        //MARK: - Networking
         let url = URL(string: "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json")
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            
             if error == nil {
-                
                 do{
                     self.hotels = try JSONDecoder().decode([HotelsInfo].self, from: data!)
                 }catch{
-                
                     print(error)
                 }
-                
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
-                    
                 }
             }
         }.resume()
@@ -63,17 +60,21 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         cell.suitesAvailabilityLabel.text = String(hotels[indexPath.row].suites_availability).capitalized
         return cell
     }
+    @IBAction func filterButtonPressed(_ sender: UIButton) {
+      print(hotels)
     
-//MARK: - Create Spinner View Function
+    }
+    
+    //MARK: - Create Spinner View Function
     func createSpinnerView() {
         let child = SpinnerViewController()
-
+        
         // add the spinner view controller
         addChild(child)
         child.view.frame = view.frame
         view.addSubview(child.view)
         child.didMove(toParent: self)
-
+        
         // wait two seconds to simulate some work happening
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             // then remove the spinner view controller

@@ -174,16 +174,23 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
+                                    <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4wj-qe-oI6"/>
+                                    <action selector="filtersButtonPressed:" destination="7hX-EO-11z" eventType="touchUpInside" id="aiF-e2-RrL"/>
                                     <segue destination="9B5-Yz-1FQ" kind="showDetail" identifier="goToFilters" id="XMJ-fv-sEN"/>
                                 </connections>
                             </button>
+                            <connections>
+                                <action selector="filterButton:" destination="7hX-EO-11z" id="maA-sX-zfg"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="9N0-HC-Yl1" id="vTK-E3-3Ph"/>
+                        <outlet property="filtersButton" destination="FjX-Bv-9w6" id="RKE-6t-vrN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="7hX-EO-11z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1002.8985507246377" y="79.6875"/>
         </scene>
@@ -222,7 +229,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="mKw-c2-4kO">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="mKw-c2-4kO">
                                 <rect key="frame" x="97" y="372" width="220" height="97"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLM-YZ-mxw">
@@ -245,6 +252,12 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="81N-j2-hSE" firstAttribute="trailing" secondItem="mKw-c2-4kO" secondAttribute="trailing" constant="97" id="OyD-7p-rwJ"/>
+                            <constraint firstItem="81N-j2-hSE" firstAttribute="bottom" secondItem="mKw-c2-4kO" secondAttribute="bottom" constant="339" id="TV7-uT-V9Y"/>
+                            <constraint firstItem="mKw-c2-4kO" firstAttribute="leading" secondItem="81N-j2-hSE" secondAttribute="leading" constant="97" id="meP-8B-htM"/>
+                            <constraint firstItem="mKw-c2-4kO" firstAttribute="top" secondItem="81N-j2-hSE" secondAttribute="top" constant="372" id="rcR-23-cG1"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="81N-j2-hSE"/>
                     </view>
                     <navigationItem key="navigationItem" id="qcG-e8-ELE"/>
