@@ -61,7 +61,10 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         return cell
     }
     @IBAction func filterButtonPressed(_ sender: UIButton) {
-      print(hotels)
+        
+        
+        performSegue(withIdentifier: "goToFilters", sender: self)
+      
     
     }
     

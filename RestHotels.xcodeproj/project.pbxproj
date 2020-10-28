@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		569835E12548AC3000F221E4 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569835E02548AC3000F221E4 /* FiltersViewController.swift */; };
 		56C3053825446A59005C7E28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3053725446A59005C7E28 /* AppDelegate.swift */; };
 		56C3053A25446A59005C7E28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3053925446A59005C7E28 /* SceneDelegate.swift */; };
 		56C3053C25446A59005C7E28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3053B25446A59005C7E28 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		569835E02548AC3000F221E4 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		56C3053425446A59005C7E28 /* RestHotels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestHotels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C3053725446A59005C7E28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56C3053925446A59005C7E28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				56C3053725446A59005C7E28 /* AppDelegate.swift */,
 				56C3053925446A59005C7E28 /* SceneDelegate.swift */,
 				56C3053B25446A59005C7E28 /* ViewController.swift */,
+				569835E02548AC3000F221E4 /* FiltersViewController.swift */,
 				56C3054E2544C433005C7E28 /* CustomCollectionViewCell.swift */,
 				56CD0BED254745430049487D /* CustomNavBarViewController.swift */,
 				56CE9A7C254755A60088FE13 /* SpinnerViewController.swift */,
@@ -156,6 +159,7 @@
 				56C3053825446A59005C7E28 /* AppDelegate.swift in Sources */,
 				56CD0BEE254745430049487D /* CustomNavBarViewController.swift in Sources */,
 				56CE9A7D254755A60088FE13 /* SpinnerViewController.swift in Sources */,
+				569835E12548AC3000F221E4 /* FiltersViewController.swift in Sources */,
 				56C3053A25446A59005C7E28 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
