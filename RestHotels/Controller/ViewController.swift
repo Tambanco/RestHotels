@@ -8,20 +8,9 @@
 
 import UIKit
 
-struct HotelsInfo: Decodable{
-    
-    var id: Int
-    var name: String
-    var address: String
-    var stars: Double
-    var distance: Double
-    var suites_availability: String
-    
-}
-
 class ViewController: UIViewController, UICollectionViewDataSource {
     
-    var hotels = [HotelsInfo]()
+    var hotels = [DataModel]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var filtersButton: UIBarButtonItem!
@@ -37,7 +26,7 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error == nil {
                 do{
-                    self.hotels = try JSONDecoder().decode([HotelsInfo].self, from: data!)
+                    self.hotels = try JSONDecoder().decode([DataModel].self, from: data!)
                 }catch{
                     print(error)
                 }
@@ -61,13 +50,19 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         return cell
     }
     @IBAction func filterButtonPressed(_ sender: UIButton) {
-        
-        
         performSegue(withIdentifier: "goToFilters", sender: self)
-      
-    
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+        let filtersVC = segue.destination as! FiltersViewController
+        filtersVC.sourceHotels = self.hotels
+    }
+//    func onUserAction(data: [DataModel]){
+//        let vc = FiltersViewController(nibName: "FiltersViewController", bundle: nil)
+//        vc.viewConroller = self
+//        print(data)
+//    }
     //MARK: - Create Spinner View Function
     func createSpinnerView() {
         let child = SpinnerViewController()
@@ -87,4 +82,3 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         }
     }
 }
-

@@ -44,7 +44,7 @@
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9In-bN-8Pz">
                                                                 <rect key="frame" x="8" y="8" width="354" height="214"/>
-                                                                <color key="backgroundColor" red="1" green="0.57647058819999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="370" id="e9n-dp-uHl"/>
                                                                     <constraint firstAttribute="height" constant="200" id="jR4-Sd-yVN"/>
@@ -176,7 +176,7 @@
                                 <connections>
                                     <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4wj-qe-oI6"/>
                                     <action selector="filtersButtonPressed:" destination="7hX-EO-11z" eventType="touchUpInside" id="aiF-e2-RrL"/>
-                                    <segue destination="9B5-Yz-1FQ" kind="showDetail" identifier="goToFilters" id="XMJ-fv-sEN"/>
+                                    <segue destination="9B5-Yz-1FQ" kind="presentation" identifier="goToFilters" id="XMJ-fv-sEN"/>
                                 </connections>
                             </button>
                             <connections>
@@ -209,23 +209,12 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Yq-8f-HHR">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="sQ0-r2-weC">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQ0-r2-weC">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fey-bh-ItH">
-                                <rect key="frame" x="24" y="20" width="39" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reset">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="resetButtonPressed:" destination="9B5-Yz-1FQ" eventType="touchUpInside" id="f1y-Tv-De8"/>
-                                    <action selector="resetFiltersButtonPressed:" destination="ta8-Vj-3LV" eventType="touchUpInside" id="Zdd-xn-Ag8"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIb-4c-9TP">
                                 <rect key="frame" x="353" y="20" width="37" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -241,7 +230,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rT4-KN-vGD">
                                         <rect key="frame" x="0.0" y="0.0" width="220" height="48"/>
-                                        <color key="backgroundColor" red="1" green="0.57647058819999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="Distance">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -252,7 +241,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLM-YZ-mxw">
                                         <rect key="frame" x="0.0" y="49" width="220" height="48"/>
-                                        <color key="backgroundColor" red="1" green="0.57647058819999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="Room Availability">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -279,7 +268,6 @@
                     <connections>
                         <outlet property="distanceButton" destination="rT4-KN-vGD" id="Nn4-cw-xAz"/>
                         <outlet property="doneButton" destination="xIb-4c-9TP" id="W8c-Qu-PQ1"/>
-                        <outlet property="resetButton" destination="fey-bh-ItH" id="az0-vE-gMr"/>
                         <outlet property="roomAvailabilityButton" destination="cLM-YZ-mxw" id="gj0-sN-vZU"/>
                     </connections>
                 </viewController>
