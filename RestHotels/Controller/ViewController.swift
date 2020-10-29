@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource {
+class ViewController: UIViewController, UICollectionViewDataSource, CanReceive {
     
     var hotels = [DataModel]()
     
@@ -44,9 +44,9 @@ class ViewController: UIViewController, UICollectionViewDataSource {
         
         cell.nameLabel.text = hotels[indexPath.row].name.capitalized
         cell.addressLabel.text = hotels[indexPath.row].address.capitalized
-        cell.starsLabel.text = String(hotels[indexPath.row].stars).capitalized
-        cell.distanceLabel.text = String(hotels[indexPath.row].distance).capitalized
-        cell.suitesAvailabilityLabel.text = String(hotels[indexPath.row].suites_availability).capitalized
+        cell.starsLabel.text = String("Stars: \(hotels[indexPath.row].stars)")
+        cell.distanceLabel.text = String("Distance: \(hotels[indexPath.row].distance)")
+        cell.suitesAvailabilityLabel.text = String("Vacant Room: \(hotels[indexPath.row].suites_availability.capitalized)")
         return cell
     }
     @IBAction func filterButtonPressed(_ sender: UIButton) {
@@ -55,14 +55,17 @@ class ViewController: UIViewController, UICollectionViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
+        if segue.identifier == "goToFilters"{
         let filtersVC = segue.destination as! FiltersViewController
         filtersVC.sourceHotels = self.hotels
+        filtersVC.delegate = self
     }
-//    func onUserAction(data: [DataModel]){
-//        let vc = FiltersViewController(nibName: "FiltersViewController", bundle: nil)
-//        vc.viewConroller = self
-//        print(data)
-//    }
+    }
+    func dataReceived(data: [DataModel]) {
+        //self.collectionView.reloadData()
+        print(data)
+    }
+
     //MARK: - Create Spinner View Function
     func createSpinnerView() {
         let child = SpinnerViewController()

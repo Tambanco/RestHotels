@@ -11,15 +11,16 @@ import UIKit
 
 protocol CanReceive{
     
-   // func dataReceived(data: [DataModel])
+    func dataReceived(data: [DataModel])
 }
 
 class FiltersViewController: UIViewController {
     
-//    var viewConroller: ViewController?
+    var delegate: CanReceive?
+    //    var viewConroller: ViewController?
     var sourceHotels = [DataModel]()
     
-   
+    
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var distanceButton: UIButton!
     @IBOutlet weak var roomAvailabilityButton: UIButton!
@@ -30,10 +31,10 @@ class FiltersViewController: UIViewController {
     }
     //MARK: - Done button functionality
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        dismiss(animated: true) {
-//            self.viewConroller?.onUserAction(data: self.sourceHotels)
-            print(self.sourceHotels)
-        }
+        self.delegate?.dataReceived(data: self.sourceHotels)
+
+        dismiss(animated: true, completion: nil)
+            
     }
     //MARK: - Distance Button Functionality
     @IBAction func distanceButtonPressed(_ sender: UIButton) {
