@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		565E1AC82549CD5500F263B6 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E1AC72549CD5400F263B6 /* DataModel.swift */; };
-		565E1ACE254A0EA400F263B6 /* CurrentHotelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E1ACD254A0EA300F263B6 /* CurrentHotelViewController.swift */; };
-		565E1AD0254A130200F263B6 /* CurrentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E1ACF254A130200F263B6 /* CurrentModel.swift */; };
 		569835E12548AC3000F221E4 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569835E02548AC3000F221E4 /* FiltersViewController.swift */; };
 		56C3053825446A59005C7E28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3053725446A59005C7E28 /* AppDelegate.swift */; };
 		56C3053A25446A59005C7E28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3053925446A59005C7E28 /* SceneDelegate.swift */; };
@@ -25,8 +23,6 @@
 
 /* Begin PBXFileReference section */
 		565E1AC72549CD5400F263B6 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		565E1ACD254A0EA300F263B6 /* CurrentHotelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentHotelViewController.swift; sourceTree = "<group>"; };
-		565E1ACF254A130200F263B6 /* CurrentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentModel.swift; sourceTree = "<group>"; };
 		569835E02548AC3000F221E4 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
 		56C3053425446A59005C7E28 /* RestHotels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestHotels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C3053725446A59005C7E28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				565E1AC72549CD5400F263B6 /* DataModel.swift */,
-				565E1ACF254A130200F263B6 /* CurrentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -76,7 +71,6 @@
 			children = (
 				56C3053B25446A59005C7E28 /* ViewController.swift */,
 				569835E02548AC3000F221E4 /* FiltersViewController.swift */,
-				565E1ACD254A0EA300F263B6 /* CurrentHotelViewController.swift */,
 				56CD0BED254745430049487D /* CustomNavBarViewController.swift */,
 				56C3054E2544C433005C7E28 /* CustomCollectionViewCell.swift */,
 				56CE9A7C254755A60088FE13 /* SpinnerViewController.swift */,
@@ -186,13 +180,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				565E1ACE254A0EA400F263B6 /* CurrentHotelViewController.swift in Sources */,
 				56C3054225446A59005C7E28 /* RestHotels.xcdatamodeld in Sources */,
 				56C3054F2544C433005C7E28 /* CustomCollectionViewCell.swift in Sources */,
 				56C3053C25446A59005C7E28 /* ViewController.swift in Sources */,
 				56C3053825446A59005C7E28 /* AppDelegate.swift in Sources */,
 				56CD0BEE254745430049487D /* CustomNavBarViewController.swift in Sources */,
-				565E1AD0254A130200F263B6 /* CurrentModel.swift in Sources */,
 				56CE9A7D254755A60088FE13 /* SpinnerViewController.swift in Sources */,
 				569835E12548AC3000F221E4 /* FiltersViewController.swift in Sources */,
 				56C3053A25446A59005C7E28 /* SceneDelegate.swift in Sources */,

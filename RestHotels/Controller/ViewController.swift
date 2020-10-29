@@ -19,7 +19,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, CanReceive {
         super.viewDidLoad()
         
         createSpinnerView()
+        
         collectionView.dataSource = self
+        
         
         //MARK: - Networking
         let url = URL(string: "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json")
@@ -41,7 +43,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, CanReceive {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomCollectionViewCell
-        
+
         cell.nameLabel.text = hotels[indexPath.row].name.capitalized
         cell.addressLabel.text = hotels[indexPath.row].address.capitalized
         cell.starsLabel.text = String("Stars: \(hotels[indexPath.row].stars)")
@@ -49,23 +51,26 @@ class ViewController: UIViewController, UICollectionViewDataSource, CanReceive {
         cell.suitesAvailabilityLabel.text = String("Vacant Room: \(hotels[indexPath.row].suites_availability.capitalized)")
         return cell
     }
+
+    
     @IBAction func filterButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "goToFilters", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
+        
         if segue.identifier == "goToFilters"{
-        let filtersVC = segue.destination as! FiltersViewController
-        filtersVC.sourceHotels = self.hotels
-        filtersVC.delegate = self
-    }
+            let filtersVC = segue.destination as! FiltersViewController
+            filtersVC.sourceHotels = self.hotels
+            filtersVC.delegate = self
+        }
     }
     func dataReceived(data: [DataModel]) {
-        //self.collectionView.reloadData()
-        print(data)
-    }
+        
+        self.collectionView.reloadData()
 
+    }
+    
     //MARK: - Create Spinner View Function
     func createSpinnerView() {
         let child = SpinnerViewController()

@@ -17,44 +17,38 @@ protocol CanReceive{
 class FiltersViewController: UIViewController {
     
     var delegate: CanReceive?
-    //    var viewConroller: ViewController?
     var sourceHotels = [DataModel]()
     
-    
-    @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var distanceButton: UIButton!
-    @IBOutlet weak var roomAvailabilityButton: UIButton!
-    
+    @IBOutlet weak var sortDistanceLbl: UILabel!
+    @IBOutlet weak var sortRoomsLbl: UILabel!
+    @IBOutlet weak var distanceSwitch: UISwitch!
+    @IBOutlet weak var roomsSwitch: UISwitch!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-    //MARK: - Done button functionality
+    //MARK: - Done Button Functionality
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         self.delegate?.dataReceived(data: self.sourceHotels)
-
         dismiss(animated: true, completion: nil)
             
     }
     //MARK: - Distance Button Functionality
-    @IBAction func distanceButtonPressed(_ sender: UIButton) {
-        if distanceButton.isSelected == true{
-            distanceButton.isSelected = false
-        }else{
-            distanceButton.isSelected = true
-        }
-        // sort hotels by distance (ascending)
-        sourceHotels.sort {$0.distance < $1.distance}
+    @IBAction func distanceIsOn(_ sender: UISwitch) {
         
-    }
-    //MARK: - Room Availability Button Functionality
-    @IBAction func roomAvailabilityButtonPressed(_ sender: UIButton) {
-        if roomAvailabilityButton.isSelected == true{
-            roomAvailabilityButton.isSelected = false
+        if sender.isOn == true{
+            sourceHotels.sort {$0.distance < $1.distance}
         }else{
-            roomAvailabilityButton.isSelected = true
         }
-        
     }
-    
+   //MARK: - Room Availability Button Functionality
+    @IBAction func roomsIsOn(_ sender: UISwitch) {
+        
+        if sender.isOn == true{
+            
+            
+        }else{
+        }
+    }
 }
