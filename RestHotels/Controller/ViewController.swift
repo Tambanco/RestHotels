@@ -19,11 +19,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, CanReceive {
         super.viewDidLoad()
         
         createSpinnerView()
-        
         collectionView.dataSource = self
+    //MARK: - Networking
         
-        
-        //MARK: - Networking
         let url = URL(string: "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json")
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error == nil {
@@ -43,15 +41,15 @@ class ViewController: UIViewController, UICollectionViewDataSource, CanReceive {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomCollectionViewCell
-
+        
         cell.nameLabel.text = hotels[indexPath.row].name.capitalized
         cell.addressLabel.text = hotels[indexPath.row].address.capitalized
         cell.starsLabel.text = String("Stars: \(hotels[indexPath.row].stars)")
         cell.distanceLabel.text = String("Distance: \(hotels[indexPath.row].distance)")
-        cell.suitesAvailabilityLabel.text = String("Vacant Room: \(hotels[indexPath.row].suites_availability.capitalized)")
+        cell.suitesAvailabilityLabel.text = String("Vacant Room: \(hotels[indexPath.row].suites_availability)")
         return cell
     }
-
+    
     
     @IBAction func filterButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "goToFilters", sender: self)
@@ -66,24 +64,20 @@ class ViewController: UIViewController, UICollectionViewDataSource, CanReceive {
         }
     }
     func dataReceived(data: [DataModel]) {
-        
+        hotels.sort {$0.distance < $1.distance}
         self.collectionView.reloadData()
-
+        
     }
+    //MARK: - Spinner View Function
     
-    //MARK: - Create Spinner View Function
     func createSpinnerView() {
         let child = SpinnerViewController()
-        
-        // add the spinner view controller
         addChild(child)
         child.view.frame = view.frame
         view.addSubview(child.view)
         child.didMove(toParent: self)
         
-        // wait two seconds to simulate some work happening
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            // then remove the spinner view controller
             child.willMove(toParent: nil)
             child.view.removeFromSuperview()
             child.removeFromParent()

@@ -23,32 +23,38 @@ class FiltersViewController: UIViewController {
     @IBOutlet weak var sortRoomsLbl: UILabel!
     @IBOutlet weak var distanceSwitch: UISwitch!
     @IBOutlet weak var roomsSwitch: UISwitch!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        distanceSwitch.backgroundColor = UIColor.lightGray
+        distanceSwitch.layer.cornerRadius = 16.0
+        roomsSwitch.backgroundColor = UIColor.lightGray
+        roomsSwitch.layer.cornerRadius = 16.0
     }
     //MARK: - Done Button Functionality
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        self.delegate?.dataReceived(data: self.sourceHotels)
         dismiss(animated: true, completion: nil)
-            
+        
     }
     //MARK: - Distance Button Functionality
     @IBAction func distanceIsOn(_ sender: UISwitch) {
         
         if sender.isOn == true{
-            sourceHotels.sort {$0.distance < $1.distance}
+            self.delegate?.dataReceived(data: self.sourceHotels)
         }else{
+            
         }
+        
+        
     }
-   //MARK: - Room Availability Button Functionality
+    //MARK: - Room Availability Button Functionality
     @IBAction func roomsIsOn(_ sender: UISwitch) {
         
-        if sender.isOn == true{
-            
-            
-        }else{
-        }
+        //sourceHotels[0].suites_availability.components(separatedBy: ":").count
+        
     }
+    
+    
 }
+
