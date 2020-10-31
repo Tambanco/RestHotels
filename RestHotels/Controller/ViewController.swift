@@ -28,7 +28,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, CanReceive {
                 do{
                     self.hotels = try JSONDecoder().decode([DataModel].self, from: data!)
                 }catch{
-                    print(error)
+                    print("Download failure. Error: \(error)")
                 }
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -64,7 +64,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, CanReceive {
         }
     }
     func dataReceived(data: [DataModel]) {
-        hotels.sort {$0.distance < $1.distance}
+        hotels = data
         self.collectionView.reloadData()
         
     }
