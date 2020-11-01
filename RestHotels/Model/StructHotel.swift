@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct DataModel: Decodable{
+struct StructHotel: Decodable{
     
     var id: Int
     var name: String

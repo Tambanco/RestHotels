@@ -11,7 +11,7 @@
         <!--RestHotels-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RestHotels" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HotelsViewController" customModule="RestHotels" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -136,6 +136,35 @@
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycr-Df-Whf">
+                                            <rect key="frame" x="157" y="725" width="100" height="34"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                            <state key="normal">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="Filters">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9XB-z8-pFe"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="9N0-HC-Yl1" firstAttribute="top" secondItem="n5E-FZ-eAW" secondAttribute="topMargin" constant="1" id="3BH-Xl-B29"/>
@@ -160,62 +189,23 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem id="FjX-Bv-9w6">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="puh-O2-ugx">
-                                <rect key="frame" x="20" y="10" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Filters">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4wj-qe-oI6"/>
-                                    <action selector="filtersButtonPressed:" destination="7hX-EO-11z" eventType="touchUpInside" id="aiF-e2-RrL"/>
-                                    <segue destination="9B5-Yz-1FQ" kind="presentation" identifier="goToFilters" id="XMJ-fv-sEN"/>
-                                </connections>
-                            </button>
-                            <connections>
-                                <action selector="filterButton:" destination="7hX-EO-11z" id="maA-sX-zfg"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="RestHotels" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="DAz-G4-r1g">
-                        <barButtonItem key="rightBarButtonItem" id="23J-HM-7eC">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="QH3-Qk-fWo">
-                                <rect key="frame" x="344" y="5" width="50" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Filters">
-                                            <attributes>
-                                                <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <font key="NSFont" metaFont="system" size="18"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kz9-by-etd"/>
-                                    <action selector="filtersButtonPressed:" destination="7hX-EO-11z" eventType="touchUpInside" id="mrZ-q0-Yvv"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="RestHotels" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="DAz-G4-r1g"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="9N0-HC-Yl1" id="vTK-E3-3Ph"/>
-                        <outlet property="filtersButton" destination="FjX-Bv-9w6" id="RKE-6t-vrN"/>
+                        <outlet property="filtersButton" destination="ycr-Df-Whf" id="Q5Y-Sr-XFx"/>
+                        <segue destination="9B5-Yz-1FQ" kind="presentation" identifier="goToFilters" id="gWe-Zd-SHN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="7hX-EO-11z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1002.8985507246377" y="79.6875"/>
+            <point key="canvasLocation" x="907" y="80"/>
         </scene>
-        <!--Filters View Controller-->
+        <!--Hotels Filters View Controller-->
         <scene sceneID="lip-tG-wBO">
             <objects>
-                <viewController id="9B5-Yz-1FQ" customClass="FiltersViewController" customModule="RestHotels" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9B5-Yz-1FQ" customClass="HotelsFiltersViewController" customModule="RestHotels" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oen-zh-ijS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -230,79 +220,76 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQ0-r2-weC">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="117" translatesAutoresizingMaskIntoConstraints="NO" id="5Fw-36-qav">
-                                            <rect key="frame" x="31" y="167" width="351.5" height="31"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="rjT-iq-lbc">
+                                            <rect key="frame" x="31" y="8" width="352" height="163"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort By Available Rooms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxQ-PS-rfG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="185.5" height="31"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="grV-Fg-4MP">
-                                                    <rect key="frame" x="302.5" y="0.0" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="roomsIsOn:" destination="9B5-Yz-1FQ" eventType="valueChanged" id="bBp-03-FNv"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                        </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="267" translatesAutoresizingMaskIntoConstraints="NO" id="Bgx-Ub-Iy3">
-                                            <rect key="frame" x="31" y="34" width="352" height="33"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NH-10-AtP">
-                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="33"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" title="Reset">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="resetButtonPressed:" destination="9B5-Yz-1FQ" eventType="touchUpInside" id="oWC-Ot-LLF"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIb-4c-9TP">
-                                                    <rect key="frame" x="311" y="0.0" width="41" height="33"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal" title="Done">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="doneButtonPressed:" destination="9B5-Yz-1FQ" eventType="touchUpInside" id="Kkb-4L-eg8"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </stackView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="96" translatesAutoresizingMaskIntoConstraints="NO" id="die-op-OmR">
-                                            <rect key="frame" x="31" y="97" width="352" height="31"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Sort By Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yC6-En-9zo">
-                                                    <rect key="frame" x="0.0" y="0.0" width="207" height="31"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5wH-mh-WiU">
-                                                    <rect key="frame" x="303" y="0.0" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="distanceIsOn:" destination="9B5-Yz-1FQ" eventType="valueChanged" id="LK1-pv-GX8"/>
-                                                    </connections>
-                                                </switch>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="267" translatesAutoresizingMaskIntoConstraints="NO" id="Bgx-Ub-Iy3">
+                                                    <rect key="frame" x="0.0" y="0.0" width="352" height="33"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0NH-10-AtP">
+                                                            <rect key="frame" x="0.0" y="0.0" width="44" height="33"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <state key="normal" title="Reset">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="resetButtonPressed:" destination="9B5-Yz-1FQ" eventType="touchUpInside" id="oWC-Ot-LLF"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIb-4c-9TP">
+                                                            <rect key="frame" x="311" y="0.0" width="41" height="33"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <state key="normal" title="Done">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="doneButtonPressed:" destination="9B5-Yz-1FQ" eventType="touchUpInside" id="Kkb-4L-eg8"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="96" translatesAutoresizingMaskIntoConstraints="NO" id="die-op-OmR">
+                                                    <rect key="frame" x="0.0" y="67" width="352" height="31"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Sort By Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yC6-En-9zo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="207" height="31"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5wH-mh-WiU">
+                                                            <rect key="frame" x="303" y="0.0" width="51" height="31"/>
+                                                            <connections>
+                                                                <action selector="distanceIsOn:" destination="9B5-Yz-1FQ" eventType="valueChanged" id="LK1-pv-GX8"/>
+                                                            </connections>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="117" translatesAutoresizingMaskIntoConstraints="NO" id="5Fw-36-qav">
+                                                    <rect key="frame" x="0.0" y="132" width="352" height="31"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort By Available Rooms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uxQ-PS-rfG">
+                                                            <rect key="frame" x="0.0" y="0.0" width="186" height="31"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="grV-Fg-4MP">
+                                                            <rect key="frame" x="303" y="0.0" width="51" height="31"/>
+                                                            <connections>
+                                                                <action selector="roomsIsOn:" destination="9B5-Yz-1FQ" eventType="valueChanged" id="bBp-03-FNv"/>
+                                                            </connections>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="Bgx-Ub-Iy3" secondAttribute="trailing" constant="31" id="5aq-8Q-LLJ"/>
-                                        <constraint firstItem="5Fw-36-qav" firstAttribute="leading" secondItem="sQ0-r2-weC" secondAttribute="leading" constant="31" id="8PC-ao-dRl"/>
-                                        <constraint firstAttribute="bottom" secondItem="5Fw-36-qav" secondAttribute="bottom" constant="644" id="AQP-Iq-gWk"/>
-                                        <constraint firstAttribute="trailing" secondItem="5Fw-36-qav" secondAttribute="trailing" constant="31.5" id="BjQ-at-LC0"/>
-                                        <constraint firstAttribute="bottom" secondItem="Bgx-Ub-Iy3" secondAttribute="bottom" constant="775" id="FTc-7A-Lsu"/>
-                                        <constraint firstItem="die-op-OmR" firstAttribute="leading" secondItem="sQ0-r2-weC" secondAttribute="leading" constant="31" id="Ge1-r3-Uo1"/>
-                                        <constraint firstItem="Bgx-Ub-Iy3" firstAttribute="leading" secondItem="sQ0-r2-weC" secondAttribute="leading" constant="31" id="KCE-MM-3i2"/>
-                                        <constraint firstAttribute="bottom" secondItem="die-op-OmR" secondAttribute="bottom" constant="714" id="KQ9-TD-c3C"/>
-                                        <constraint firstItem="Bgx-Ub-Iy3" firstAttribute="top" secondItem="sQ0-r2-weC" secondAttribute="top" constant="34" id="MEP-of-6Sz"/>
-                                        <constraint firstItem="5Fw-36-qav" firstAttribute="top" secondItem="sQ0-r2-weC" secondAttribute="top" constant="167" id="ijV-P4-hZ4"/>
-                                        <constraint firstAttribute="trailing" secondItem="die-op-OmR" secondAttribute="trailing" constant="31" id="mJm-gs-689"/>
-                                        <constraint firstItem="die-op-OmR" firstAttribute="top" secondItem="sQ0-r2-weC" secondAttribute="top" constant="97" id="twh-eH-Iju"/>
+                                        <constraint firstAttribute="bottom" secondItem="rjT-iq-lbc" secondAttribute="bottom" constant="671" id="12n-lP-1gH"/>
+                                        <constraint firstItem="rjT-iq-lbc" firstAttribute="leading" secondItem="sQ0-r2-weC" secondAttribute="leading" constant="31" id="6fC-3L-EKV"/>
+                                        <constraint firstAttribute="trailing" secondItem="rjT-iq-lbc" secondAttribute="trailing" constant="31" id="HW6-ac-Vrl"/>
+                                        <constraint firstItem="rjT-iq-lbc" firstAttribute="top" secondItem="sQ0-r2-weC" secondAttribute="top" constant="8" id="dLR-4Q-3lK"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="regular"/>
@@ -323,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OpV-Pe-DT5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1876.8115942028987" y="-218.30357142857142"/>
+            <point key="canvasLocation" x="1747.826086956522" y="79.6875"/>
         </scene>
         <!--Custom Nav Bar View Controller-->
         <scene sceneID="mPS-jh-eqY">

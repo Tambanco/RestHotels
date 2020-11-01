@@ -6,18 +6,23 @@
 //  Copyright © 2020 Tambanco. All rights reserved.
 //
 
+enum FilteringOption
+{
+    case byDistance
+    case byRoomAvailability
+}
+
+protocol Filterable
+{
+    func filter(by filteringOptions: Set<FilteringOption>)
+}
 
 import UIKit
 
-protocol CanReceive{
+class HotelsFiltersViewController: UIViewController
+{
     
-    func dataReceived(data: [StructHotel])
-}
-
-class HotelsFiltersViewController: UIViewController {
-    
-    var delegate: CanReceive?
-    var sourceHotels = [StructHotel]()
+    var delegate: Filterable?
     
     @IBOutlet weak var doneButtonLbl: UIButton!
     @IBOutlet weak var resetButtonLbl: UIButton!
@@ -49,7 +54,6 @@ class HotelsFiltersViewController: UIViewController {
         distanceSwitch.isOn = false
         roomsSwitch.isOn = false
         
-        self.delegate?.dataReceived(data: self.sourceHotels)
         
         dismiss(animated: true, completion: nil)
     }
@@ -58,10 +62,6 @@ class HotelsFiltersViewController: UIViewController {
     @IBAction func distanceIsOn(_ sender: UISwitch) {
         if sender.isOn == true{
             
-            var sortedDistance = self.sourceHotels
-            
-            sortedDistance.sort {$0.distance < $1.distance}
-            self.delegate?.dataReceived(data: sortedDistance)
         }else{
             
         }
@@ -69,11 +69,34 @@ class HotelsFiltersViewController: UIViewController {
     //MARK: - Room Availability Button Functionality
     @IBAction func roomsIsOn(_ sender: UISwitch) {
         
-        
-        //sourceHotels[0].suites_availability.components(separatedBy: ":").count
+    }
+}
+// MARK:- Initialization
+extension HotelsFiltersViewController
+{
+    func initialize()
+    {
         
     }
-    
-    
+}
+
+// MARK:- fake life cycle
+extension HotelsFiltersViewController
+{
+    func viewWillDisappear()
+    {
+        delegate?.filter(by: [.byDistance])
+    }
+}
+
+// MARK:- Instantiation
+extension HotelsFiltersViewController
+{
+    static func create() -> HotelsFiltersViewController
+    {
+        let vc = HotelsFiltersViewController()
+        
+        return vc
+    }
 }
 
