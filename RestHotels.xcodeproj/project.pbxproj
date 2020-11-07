@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		564E89972552BB0B0041C298 /* HotelParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564E89962552BB0B0041C298 /* HotelParameters.swift */; };
-		565E1AC82549CD5500F263B6 /* StructHotelJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E1AC72549CD5400F263B6 /* StructHotelJSON.swift */; };
+		565E1AC82549CD5500F263B6 /* HotelJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E1AC72549CD5400F263B6 /* HotelJSON.swift */; };
 		569835E12548AC3000F221E4 /* HotelsFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569835E02548AC3000F221E4 /* HotelsFiltersViewController.swift */; };
 		56C3053825446A59005C7E28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3053725446A59005C7E28 /* AppDelegate.swift */; };
 		56C3053A25446A59005C7E28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3053925446A59005C7E28 /* SceneDelegate.swift */; };
@@ -28,7 +28,7 @@
 		2B7333D5FE887B70C3393732 /* Pods-RestHotels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestHotels.release.xcconfig"; path = "Target Support Files/Pods-RestHotels/Pods-RestHotels.release.xcconfig"; sourceTree = "<group>"; };
 		43BA464F5B4B4EB9B905C7CC /* Pods-RestHotels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestHotels.debug.xcconfig"; path = "Target Support Files/Pods-RestHotels/Pods-RestHotels.debug.xcconfig"; sourceTree = "<group>"; };
 		564E89962552BB0B0041C298 /* HotelParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelParameters.swift; sourceTree = "<group>"; };
-		565E1AC72549CD5400F263B6 /* StructHotelJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructHotelJSON.swift; sourceTree = "<group>"; };
+		565E1AC72549CD5400F263B6 /* HotelJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelJSON.swift; sourceTree = "<group>"; };
 		569835E02548AC3000F221E4 /* HotelsFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsFiltersViewController.swift; sourceTree = "<group>"; };
 		56C3053425446A59005C7E28 /* RestHotels.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestHotels.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56C3053725446A59005C7E28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,7 +69,7 @@
 		565E1AC92549CDA000F263B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				565E1AC72549CD5400F263B6 /* StructHotelJSON.swift */,
+				565E1AC72549CD5400F263B6 /* HotelJSON.swift */,
 				564E89962552BB0B0041C298 /* HotelParameters.swift */,
 			);
 			path = Model;
@@ -264,7 +264,7 @@
 				56CE9A7D254755A60088FE13 /* SpinnerViewController.swift in Sources */,
 				569835E12548AC3000F221E4 /* HotelsFiltersViewController.swift in Sources */,
 				56C3053A25446A59005C7E28 /* SceneDelegate.swift in Sources */,
-				565E1AC82549CD5500F263B6 /* StructHotelJSON.swift in Sources */,
+				565E1AC82549CD5500F263B6 /* HotelJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

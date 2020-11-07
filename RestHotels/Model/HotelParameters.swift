@@ -8,12 +8,14 @@
 
 import UIKit
 
-struct HotelParameters
+struct Hotel
 {
-    let id: Int
-    let name: String
-    let distance: Double
-    let availableRoomsCount: Int
+    let id:                 String
+    let name:               String
+    let address:            String
+    let rating:             String
+    let distance:           Double
+    let vacantRoomsCount:   Int
     
 }
 

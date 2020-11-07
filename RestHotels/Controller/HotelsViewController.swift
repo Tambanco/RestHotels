@@ -12,12 +12,12 @@ class HotelsViewController: UIViewController, UICollectionViewDataSource, Filter
 {
     
     //MARK:- Stateful
-    var hotels: [HotelParameters]              = []
+    var hotels: [Hotel]              = []
     var displayOrder: [Int]                    = []
     var filteringOptions: Set<FilteringOption> = []
     var needRefreshData: Bool                  = false
     
-    var hotelsList = [StructHotelJSON]()
+    var hotelsList = [HotelJSON]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var filtersButton: UIButton!
@@ -32,7 +32,7 @@ class HotelsViewController: UIViewController, UICollectionViewDataSource, Filter
         //cell.addressLabel.text = hotels[indexPath.row].address.capitalized
         //cell.starsLabel.text = String("Stars: \(hotels[indexPath.row].stars)")
         cell.distanceLabel.text = String("Distance: \(hotels[indexPath.row].distance)")
-        cell.suitesAvailabilityLabel.text = "Vacant Room: \(hotels[indexPath.row].availableRoomsCount)"
+        //cell.suitesAvailabilityLabel.text = "Vacant Room: \(hotels[indexPath.row].availableRoomsCount)"
         return cell
     }
     
@@ -72,10 +72,10 @@ extension HotelsViewController
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error == nil {
                 do{
-                    self.hotelsList = try JSONDecoder().decode([StructHotelJSON].self, from: data!)
+                    self.hotelsList = try JSONDecoder().decode([HotelJSON].self, from: data!)
                     print("Data download successfully")
                     self.hotels = self.hotelsList.map{
-                        HotelParameters(id: $0.id,
+                        Hotel(id: $0.id,
                                         name: $0.name,
                                         distance: $0.distance,
                                         availableRoomsCount: self.getVacantRoomCount($0.suites_availability))
@@ -94,7 +94,7 @@ extension HotelsViewController
 // MARK:- Data handling
 extension HotelsViewController
 {
-    func onDataRecieved (_ raw: [HotelParameters])
+    func onDataRecieved (_ raw: [Hotel])
     {
         hotels             = raw
         displayOrder       = Array(0..<raw.count)
@@ -130,7 +130,7 @@ extension HotelsViewController
         setCollectionViewCell(hotels[displayOrder[displayItemAt]])
     }
     
-    func setCollectionViewCell(_ dataToDisplay: HotelParameters?)
+    func setCollectionViewCell(_ dataToDisplay: Hotel?)
     {
         if let dataToDisplay = dataToDisplay
         {
@@ -143,7 +143,7 @@ extension HotelsViewController
 // MARK:- Sorting
 extension HotelsViewController
 {
-    func getComparator(_ filterOptions: Set<FilteringOption>) -> ((HotelParameters, HotelParameters) -> Bool)?
+    func getComparator(_ filterOptions: Set<FilteringOption>) -> ((Hotel, Hotel) -> Bool)?
     {
         switch filterOptions.count
         {
@@ -156,7 +156,7 @@ extension HotelsViewController
         }
     }
     
-    func getComparatorForSingleOption(_ filteringOption: FilteringOption?) -> ((HotelParameters, HotelParameters) -> Bool)?
+    func getComparatorForSingleOption(_ filteringOption: FilteringOption?) -> ((Hotel, Hotel) -> Bool)?
     {
         switch filteringOption
         {
@@ -169,7 +169,7 @@ extension HotelsViewController
         }
     }
     
-    func getComparatorForTwoOptions(_ filterOptions: Set<FilteringOption>) -> ((HotelParameters, HotelParameters) -> Bool)?
+    func getComparatorForTwoOptions(_ filterOptions: Set<FilteringOption>) -> ((Hotel, Hotel) -> Bool)?
     {
         if filterOptions.contains(.byDistance) && filterOptions.contains(.byRoomAvailability)
         {

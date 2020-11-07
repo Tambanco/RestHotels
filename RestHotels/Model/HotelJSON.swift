@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct StructHotelJSON: Decodable
+struct HotelJSON: Decodable
 {
     var id: Int
     var name: String
