@@ -6,11 +6,6 @@
 //  Copyright © 2020 Tambanco. All rights reserved.
 //
 
-enum FilteringOption
-{
-    case byDistance
-    case byRoomAvailability
-}
 
 protocol Filterable
 {
@@ -19,10 +14,16 @@ protocol Filterable
 
 import UIKit
 
+enum FilteringOption
+{
+    case byDistance
+    case byRoomAvailability
+}
 class HotelsFiltersViewController: UIViewController
 {
     
     var delegate: Filterable?
+    var sourtedByDistance = FilteringOption.byDistance
     
     @IBOutlet weak var doneButtonLbl: UIButton!
     @IBOutlet weak var resetButtonLbl: UIButton!
@@ -39,12 +40,13 @@ class HotelsFiltersViewController: UIViewController
         roomsSwitch.backgroundColor = UIColor.lightGray
         roomsSwitch.layer.cornerRadius = 16.0
         
-        
     }
-    
+
     
     //MARK: - Done Button Functionality
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        viewWillDisappear()
+    
         dismiss(animated: true, completion: nil)
         
     }
@@ -54,21 +56,26 @@ class HotelsFiltersViewController: UIViewController
         distanceSwitch.isOn = false
         roomsSwitch.isOn = false
         
-        
         dismiss(animated: true, completion: nil)
     }
     
     //MARK: - Distance Button Functionality
     @IBAction func distanceIsOn(_ sender: UISwitch) {
-        if sender.isOn == true{
-            
-        }else{
+        if sender.isOn == true
+        {
+           
+        }
+        else
+        {
             
         }
     }
     //MARK: - Room Availability Button Functionality
     @IBAction func roomsIsOn(_ sender: UISwitch) {
-        
+        if sender.isOn
+        {
+            
+        }
     }
 }
 // MARK:- Initialization

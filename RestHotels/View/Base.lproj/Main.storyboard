@@ -42,13 +42,10 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="350" height="150"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9In-bN-8Pz">
-                                                                <rect key="frame" x="8" y="8" width="334" height="134"/>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9In-bN-8Pz">
+                                                                <rect key="frame" x="8" y="8" width="370" height="134"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="150" id="J2j-AB-XMw"/>
-                                                                    <constraint firstAttribute="width" constant="370" id="e9n-dp-uHl"/>
-                                                                </constraints>
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49G-gH-efB">
                                                                 <rect key="frame" x="5" y="1" width="340" height="30"/>
@@ -97,13 +94,9 @@
                                                             </label>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="9In-bN-8Pz" firstAttribute="centerX" secondItem="sJW-j3-jCs" secondAttribute="centerX" id="2eH-Mw-MTy"/>
                                                             <constraint firstItem="Sqz-0y-E3S" firstAttribute="top" secondItem="SUv-ol-J0U" secondAttribute="bottom" constant="1" id="5eJ-fq-VDw"/>
-                                                            <constraint firstItem="9In-bN-8Pz" firstAttribute="leading" secondItem="sJW-j3-jCs" secondAttribute="leadingMargin" id="6pc-ud-ygp"/>
                                                             <constraint firstItem="SUv-ol-J0U" firstAttribute="top" secondItem="PXT-cy-nUC" secondAttribute="bottom" constant="1" id="8RH-tF-IBa"/>
                                                             <constraint firstItem="6cX-bS-u41" firstAttribute="top" secondItem="Sqz-0y-E3S" secondAttribute="bottom" constant="1" id="DEL-68-GRm"/>
-                                                            <constraint firstAttribute="trailing" secondItem="9In-bN-8Pz" secondAttribute="trailing" constant="8" id="F1a-JE-kf1"/>
-                                                            <constraint firstItem="9In-bN-8Pz" firstAttribute="bottom" secondItem="sJW-j3-jCs" secondAttribute="bottomMargin" id="FyT-5h-gqA"/>
                                                             <constraint firstAttribute="trailing" secondItem="49G-gH-efB" secondAttribute="trailing" constant="5" id="GJc-b3-Ent"/>
                                                             <constraint firstItem="PXT-cy-nUC" firstAttribute="top" secondItem="49G-gH-efB" secondAttribute="bottom" constant="1" id="Kga-Z5-NKe"/>
                                                             <constraint firstItem="49G-gH-efB" firstAttribute="leading" secondItem="sJW-j3-jCs" secondAttribute="leading" constant="5" id="KtU-PT-tUc"/>
@@ -111,12 +104,7 @@
                                                             <constraint firstItem="Sqz-0y-E3S" firstAttribute="leading" secondItem="sJW-j3-jCs" secondAttribute="leading" constant="5" id="Qvb-bN-zCt"/>
                                                             <constraint firstAttribute="trailing" secondItem="Sqz-0y-E3S" secondAttribute="trailing" constant="5" id="ROn-9z-qd0"/>
                                                             <constraint firstAttribute="trailing" secondItem="SUv-ol-J0U" secondAttribute="trailing" constant="5" id="RXB-lg-Up2"/>
-                                                            <constraint firstItem="9In-bN-8Pz" firstAttribute="leading" secondItem="sJW-j3-jCs" secondAttribute="leading" constant="8" id="V4O-KU-upJ"/>
                                                             <constraint firstItem="SUv-ol-J0U" firstAttribute="leading" secondItem="sJW-j3-jCs" secondAttribute="leading" constant="5" id="W4J-QP-id9"/>
-                                                            <constraint firstAttribute="bottom" secondItem="9In-bN-8Pz" secondAttribute="bottom" constant="8" id="aIe-0F-elR"/>
-                                                            <constraint firstItem="9In-bN-8Pz" firstAttribute="top" secondItem="sJW-j3-jCs" secondAttribute="top" constant="8" id="bSt-ZQ-jbF"/>
-                                                            <constraint firstAttribute="trailingMargin" secondItem="9In-bN-8Pz" secondAttribute="trailing" id="bnL-TY-bBK"/>
-                                                            <constraint firstItem="9In-bN-8Pz" firstAttribute="top" secondItem="sJW-j3-jCs" secondAttribute="topMargin" id="fXM-bh-fKe"/>
                                                             <constraint firstItem="6cX-bS-u41" firstAttribute="leading" secondItem="sJW-j3-jCs" secondAttribute="leading" constant="5" id="j73-S6-aQr"/>
                                                             <constraint firstItem="PXT-cy-nUC" firstAttribute="leading" secondItem="sJW-j3-jCs" secondAttribute="leading" constant="5" id="oSi-Az-WHd"/>
                                                             <constraint firstAttribute="trailing" secondItem="PXT-cy-nUC" secondAttribute="trailing" constant="5" id="vNd-mK-2fn"/>
@@ -136,35 +124,6 @@
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ycr-Df-Whf">
-                                            <rect key="frame" x="157" y="725" width="100" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                            <state key="normal">
-                                                <attributedString key="attributedTitle">
-                                                    <fragment content="Filters">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" metaFont="system" size="18"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="15"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                            <connections>
-                                                <action selector="filterButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9XB-z8-pFe"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="9N0-HC-Yl1" firstAttribute="top" secondItem="n5E-FZ-eAW" secondAttribute="topMargin" constant="1" id="3BH-Xl-B29"/>
@@ -190,7 +149,40 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="RestHotels" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="DAz-G4-r1g"/>
+                    <navigationItem key="navigationItem" title="RestHotels" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="DAz-G4-r1g">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="3Ew-b1-bWd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="ycr-Df-Whf">
+                                <rect key="frame" x="304" y="8.5" width="90" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="slider.horizontal.3" catalog="system">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Filters">
+                                            <attributes>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" metaFont="system" size="18"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="filtersButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZD3-5S-poK"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="collectionView" destination="9N0-HC-Yl1" id="vTK-E3-3Ph"/>
@@ -334,5 +326,6 @@
     </scenes>
     <resources>
         <image name="2" width="3079" height="4311"/>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
     </resources>
 </document>

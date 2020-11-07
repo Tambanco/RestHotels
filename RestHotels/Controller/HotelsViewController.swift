@@ -7,83 +7,21 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
-struct Hotel
-{
-    let id: Int
-    let name: String
-    let distance: Double
-    let availableRoomsCount: Int
-}
-
-class HotelsViewController: UIViewController, Filterable
+class HotelsViewController: UIViewController, UICollectionViewDataSource, Filterable
 {
     
     //MARK:- Stateful
-    var hotels: [Hotel]                        = []
+    var hotels: [HotelParameters]              = []
     var displayOrder: [Int]                    = []
     var filteringOptions: Set<FilteringOption> = []
     var needRefreshData: Bool                  = false
     
-    let dataURL = "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json"
+    var hotelsList = [StructHotelJSON]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var filtersButton: UIButton!
     
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-        getJSONData(url: dataURL)
-        createSpinnerView()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-
-    }
-    
-    
-    @IBAction func filterButtonPressed(_ sender: UIButton) {
-        
-        performSegue(withIdentifier: "goToFilters", sender: nil)
-    }
-    
-//MARK: - Networking
-
-    func getJSONData(url: String)
-    {
-        Alamofire.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                self.updateData(json: json)
-                print("JSON: \(json)")
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-
-//MARK: - JSON Parsing
-
-    func updateData(json: JSON)
-    {
-        if json["results"].exists()
-        {
-            let rawItems = json["results"].arrayValue
-            if rawItems.count > 0
-            {
-                rawItems.forEach( { hotels.append(Hotel( id: $0["id"].int ?? 0,
-                                                         name: $0["name"].string ?? "issues with name",
-                                                         distance: $0["distance"].double ?? 0.0,
-                                                         availableRoomsCount: $0["AailableRomms"].int ?? 0))})
-                }
-            self.collectionView.reloadData()
-        }else
-        {
-            print("Data doesn't available")
-        }
-    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return hotels.count
     }
@@ -91,16 +29,72 @@ class HotelsViewController: UIViewController, Filterable
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomCollectionViewCell
         
         cell.nameLabel.text = hotels[indexPath.row].name.capitalized
+        //cell.addressLabel.text = hotels[indexPath.row].address.capitalized
+        //cell.starsLabel.text = String("Stars: \(hotels[indexPath.row].stars)")
         cell.distanceLabel.text = String("Distance: \(hotels[indexPath.row].distance)")
+        cell.suitesAvailabilityLabel.text = "Vacant Room: \(hotels[indexPath.row].availableRoomsCount)"
         return cell
+    }
+    
+    @IBAction func filtersButtonPressed(_ sender: UIButton) {
+        onSortingTapped()
     }
 }
 
+//MARK: - Life cycle
+extension HotelsViewController
+{
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        createSpinnerView()
+        collectionView.dataSource = self
+        
+        requestData()
+        
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refreshCollectionViewIfNeeded()
+        
+        
+    }
+}
+
+//MARK: - Networking
+extension HotelsViewController
+{
+    func requestData()
+    {
+        let url = URL(string: "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json")
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error == nil {
+                do{
+                    self.hotelsList = try JSONDecoder().decode([StructHotelJSON].self, from: data!)
+                    print("Data download successfully")
+                    self.hotels = self.hotelsList.map{
+                        HotelParameters(id: $0.id,
+                                        name: $0.name,
+                                        distance: $0.distance,
+                                        availableRoomsCount: self.getVacantRoomCount($0.suites_availability))
+                    }
+                }catch{
+                    print("Download failure. Error: \(error)")
+                }
+                DispatchQueue.main.async
+                {
+//                    self.collectionView.reloadData()
+                }
+            }
+        }.resume()
+    }
+}
 // MARK:- Data handling
 extension HotelsViewController
 {
-    func onDataRecieved (_ raw: [Hotel])
+    func onDataRecieved (_ raw: [HotelParameters])
     {
         hotels             = raw
         displayOrder       = Array(0..<raw.count)
@@ -108,13 +102,13 @@ extension HotelsViewController
 }
 
 // MARK:- Fake life cycle
-extension HotelsViewController
-{
-    func onViewWillAppear()
-    {
-        refreshCollectionViewIfNeeded()
-    }
-}
+//extension HotelsViewController
+//{
+//    func onViewWillAppear()
+//    {
+//        refreshCollectionViewIfNeeded()
+//    }
+//}
 
 extension HotelsViewController
 {
@@ -122,7 +116,7 @@ extension HotelsViewController
     {
         if needRefreshData
         {
-            // reloaCollectionView
+            collectionView.reloadData()
             needRefreshData = false
         }
     }
@@ -136,7 +130,7 @@ extension HotelsViewController
         setCollectionViewCell(hotels[displayOrder[displayItemAt]])
     }
     
-    func setCollectionViewCell(_ dataToDisplay: Hotel?)
+    func setCollectionViewCell(_ dataToDisplay: HotelParameters?)
     {
         if let dataToDisplay = dataToDisplay
         {
@@ -149,20 +143,20 @@ extension HotelsViewController
 // MARK:- Sorting
 extension HotelsViewController
 {
-    func getComparator(_ filterOptions: Set<FilteringOption>) -> ((Hotel, Hotel) -> Bool)?
+    func getComparator(_ filterOptions: Set<FilteringOption>) -> ((HotelParameters, HotelParameters) -> Bool)?
     {
         switch filterOptions.count
         {
         case 1:
             return getComparatorForSingleOption(filterOptions.first)
         case 2:
-            return getComparatorForThoOptions(filterOptions)
+            return getComparatorForTwoOptions(filterOptions)
         default:
             return nil
         }
     }
     
-    func getComparatorForSingleOption(_ filteringOption: FilteringOption?) -> ((Hotel, Hotel) -> Bool)?
+    func getComparatorForSingleOption(_ filteringOption: FilteringOption?) -> ((HotelParameters, HotelParameters) -> Bool)?
     {
         switch filteringOption
         {
@@ -175,7 +169,7 @@ extension HotelsViewController
         }
     }
     
-    func getComparatorForThoOptions(_ filterOptions: Set<FilteringOption>) -> ((Hotel, Hotel) -> Bool)?
+    func getComparatorForTwoOptions(_ filterOptions: Set<FilteringOption>) -> ((HotelParameters, HotelParameters) -> Bool)?
     {
         if filterOptions.contains(.byDistance) && filterOptions.contains(.byRoomAvailability)
         {
@@ -228,11 +222,8 @@ extension HotelsViewController
     func onSortingTapped()
     {
         let hotelsFilterVC = HotelsFiltersViewController.create()
-        
         hotelsFilterVC.delegate = self
-        
-        
-        // present hotelsFilterVC
+        performSegue(withIdentifier: "goToFilters", sender: nil)
     }
 }
 //MARK: - Spinner View Function
@@ -241,10 +232,10 @@ extension HotelsViewController
     func createSpinnerView() {
         let child = SpinnerViewController()
         addChild(child)
-        child.view.frame = view.frame
+        child.view.backgroundColor = .white
+        child.view.frame = CGRect(x: 170, y: 250, width: 70, height: 70)
         view.addSubview(child.view)
         child.didMove(toParent: self)
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             child.willMove(toParent: nil)
             child.view.removeFromSuperview()
@@ -280,5 +271,13 @@ extension HotelsViewController
             guard let color = layer.borderColor else { return nil }
             return UIColor(cgColor: color)
         }
+    }
+}
+
+//MARK: - Utils
+extension HotelsViewController{
+    func getVacantRoomCount(_ raw: String) -> Int
+    {
+        return raw.split(separator: ":").count
     }
 }

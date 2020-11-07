@@ -8,8 +8,9 @@
 
 import UIKit
 
-class SpinnerViewController: UIViewController {
-    var spinner = UIActivityIndicatorView(style: .whiteLarge)
+class SpinnerViewController: UIViewController
+{
+    var spinner = UIActivityIndicatorView(style: .large)
 
     override func loadView() {
         view = UIView()
