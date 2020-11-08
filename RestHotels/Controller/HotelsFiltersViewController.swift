@@ -23,7 +23,6 @@ class HotelsFiltersViewController: UIViewController
 {
     
     var delegate: Filterable?
-    var sourtedByDistance = FilteringOption.byDistance
     
     @IBOutlet weak var doneButtonLbl: UIButton!
     @IBOutlet weak var resetButtonLbl: UIButton!
@@ -43,14 +42,14 @@ class HotelsFiltersViewController: UIViewController
     }
 
     
-    //MARK: - Done Button Functionality
+//MARK: - Done Button Functionality
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         viewWillDisappear()
     
         dismiss(animated: true, completion: nil)
         
     }
-    //MARK: - Reset Button Functionality
+//MARK: - Reset Button Functionality
     @IBAction func resetButtonPressed(_ sender: UIButton) {
         
         distanceSwitch.isOn = false
@@ -59,7 +58,7 @@ class HotelsFiltersViewController: UIViewController
         dismiss(animated: true, completion: nil)
     }
     
-    //MARK: - Distance Button Functionality
+//MARK: - Distance Button Functionality
     @IBAction func distanceIsOn(_ sender: UISwitch) {
         if sender.isOn == true
         {
@@ -70,7 +69,7 @@ class HotelsFiltersViewController: UIViewController
             
         }
     }
-    //MARK: - Room Availability Button Functionality
+//MARK: - Room Availability Button Functionality
     @IBAction func roomsIsOn(_ sender: UISwitch) {
         if sender.isOn
         {
