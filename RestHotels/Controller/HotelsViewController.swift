@@ -11,6 +11,7 @@ import UIKit
 class HotelsViewController: UIViewController, Filterable
 {
 //MARK: - Outlets
+   
     @IBOutlet weak var hotelsCollectionView: UICollectionView!
     @IBOutlet weak var filtersButton: UIButton!
     
@@ -21,6 +22,7 @@ class HotelsViewController: UIViewController, Filterable
     var needRefreshData: Bool                  = false
     var hotelsList                             = [HotelJSON]()
     var cellHeights: [CGFloat]                 = []
+    
     
 //MARK: - Buttons actions
     @IBAction func filtersButtonPressed(_ sender: UIButton)
@@ -37,12 +39,33 @@ extension HotelsViewController
         super.viewDidLoad()
         
         requestData()
-        createSpinnerView()
-        
+        //createSpinnerView()
+        setupUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         refreshCollectionViewIfNeeded()
+    }
+}
+//MARK:- Setup UI
+extension HotelsViewController
+{
+    func setupUI()
+    {
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+ 
+        setupHotelsCollectionView()
+    }
+    
+    func setupHotelsCollectionView()
+    {
+        hotelsCollectionView.contentInsetAdjustmentBehavior = .never
+        hotelsCollectionView.delegate   = self
+        hotelsCollectionView.dataSource = self
+        
+        hotelsCollectionView.register(UINib(nibName: String(describing: HotelCollectionViewCell.self), bundle: nil),
+                                      forCellWithReuseIdentifier: String(describing: HotelCollectionViewCell.self))
     }
 }
 
@@ -56,22 +79,20 @@ extension HotelsViewController
             if error == nil {
                 do{
                     self.hotelsList = try JSONDecoder().decode([HotelJSON].self, from: data!)
-                    print("Data download: \(self.hotelsList)")
-                    self.hotels = self.hotelsList.map{
-                        Hotel(id: $0.id,
-                              name: $0.name,
-                              address: $0.address,
-                              rating: $0.stars,
-                              distance: $0.distance,
-                              vacantRoomsCount: self.getVacantRoomCount($0.suites_availability))
+                    print("Data successfully downloaded")
+                    self.hotels = self.hotelsList.map{ Hotel( id: $0.id,
+                                                              name: $0.name,
+                                                              address: $0.address,
+                                                              rating: $0.stars,
+                                                              distance: $0.distance,
+                                                              vacantRoomsCount: self.getVacantRoomCount($0.suites_availability)) }
+                    DispatchQueue.main.async {
+                        self.cellHeights = self.getCellHeights(self.hotels)
+                        self.hotelsCollectionView.reloadData()
                     }
+                    
                 }catch{
                     print("Download failure. Error: \(error)")
-                }
-                DispatchQueue.main.async
-                {
-                    
-                 // self.hotelsCollectionView.reloadData()
                 }
             }
         }.resume()
@@ -81,34 +102,37 @@ extension HotelsViewController
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        return hotels.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HotelCollectionViewCell.self),
-                                                         for: indexPath) as? HotelCollectionViewCell
-        {
-            cell.initialize(hotels[indexPath.item])
-            
-            return cell
-        }
+      {
+        return cellHeights.count
+      }
+      
+      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+      {
+          if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HotelCollectionViewCell.self),
+                                                           for: indexPath) as? HotelCollectionViewCell
+          {
+              cell.initialize(hotels[indexPath.item])
+              return cell
+          }
+          
+          return UICollectionViewCell()
+      }
+      
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+      {
         
-        return UICollectionViewCell()
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        return CGSize(width: self.view.frame.width,
+        return CGSize(width: UIScreen.main.bounds.width,
                       height: cellHeights[indexPath.item])
-    }
+      }
+      
+      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
+      {
+          return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+      }
+   
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
-    {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
 }
+
 // MARK:- Data handling
 extension HotelsViewController
 {
@@ -119,32 +143,15 @@ extension HotelsViewController
     }
 }
 
-//MARK:- Setup UI
-extension HotelsViewController
-{
-    func setupUI()
-    {
-        self.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        setupHotelsCollectionView()
-    }
-    
-    func setupHotelsCollectionView()
-    {
-        hotelsCollectionView.delegate   = self
-        hotelsCollectionView.dataSource = self
-        
-        hotelsCollectionView.register(UINib(nibName: String(describing: HotelCollectionViewCell.self), bundle: nil),
-                                      forCellWithReuseIdentifier: String(describing: HotelCollectionViewCell.self))    }
-}
+
 //MARK:- Utils
 extension HotelsViewController
 {
     func getCellHeights(_ hotels: [Hotel]) -> [CGFloat]
     {
         
-        return hotels.map{  $0.name.getHight(for: self.view.frame.width - HotelCollectionViewCell.Constants.horisontalPaddings, with: UIFont.boldSystemFont(ofSize: 25)) +
-                            $0.address.getHight(for: self.view.frame.width - HotelCollectionViewCell.Constants.horisontalPaddings) +
+        return hotels.map{  $0.name.getHight(for: UIScreen.main.bounds.width - HotelCollectionViewCell.Constants.horisontalPaddings, with: UIFont.boldSystemFont(ofSize: 25)) +
+                            $0.address.getHight(for: UIScreen.main.bounds.width - HotelCollectionViewCell.Constants.horisontalPaddings) +
                             HotelCollectionViewCell.Constants.verticalSpacing }
     }
 }
@@ -156,7 +163,6 @@ extension HotelsViewController
     {
         if needRefreshData
         {
-            hotelsCollectionView.reloadData()
             needRefreshData = false
         }
     }
@@ -269,19 +275,20 @@ extension HotelsViewController
 //MARK: - Spinner View Function
 extension HotelsViewController
 {
-    func createSpinnerView() {
-        let child = SpinnerViewController()
-        addChild(child)
-        child.view.backgroundColor = .white
-//        child.view.frame = CGRect(x: view.layer.frame.width / 2, y: view.layer.frame.height / 2, width: 70, height: 70)
-        child.view.frame = CGRect(x: 187.5, y: 406.0, width: 70, height: 70)
-        view.addSubview(child.view)
-        child.didMove(toParent: self)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            child.willMove(toParent: nil)
-            child.view.removeFromSuperview()
-            child.removeFromParent()
-        }
+    func createSpinnerView()
+    {
+//        let child = SpinnerViewController()
+//        addChild(child)
+//        child.view.backgroundColor = .white
+////        child.view.frame = CGRect(x: view.layer.frame.width / 2, y: view.layer.frame.height / 2, width: 70, height: 70)
+//        child.view.frame = CGRect(x: 187.5, y: 406.0, width: 70, height: 70)
+//        view.addSubview(child.view)
+//        child.didMove(toParent: self)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            child.willMove(toParent: nil)
+//            child.view.removeFromSuperview()
+//            child.removeFromParent()
+//        }
     }
 }
 //MARK: - Custom buttom
