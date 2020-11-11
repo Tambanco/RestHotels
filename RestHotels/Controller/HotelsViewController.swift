@@ -45,6 +45,8 @@ extension HotelsViewController
     
     override func viewWillAppear(_ animated: Bool)
     {
+        super.viewWillAppear(animated)
+        
         refreshCollectionViewIfNeeded()
     }
 }
@@ -89,6 +91,7 @@ extension HotelsViewController
                     DispatchQueue.main.async {
                         self.cellHeights = self.getCellHeights(self.hotels)
                         self.hotelsCollectionView.reloadData()
+                        self.onDataRecieved(self.hotels)
                     }
                     
                 }catch{
@@ -111,7 +114,8 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
           if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HotelCollectionViewCell.self),
                                                            for: indexPath) as? HotelCollectionViewCell
           {
-              cell.initialize(hotels[indexPath.item])
+              cell.initialize(hotels[displayOrder[indexPath.item]])
+            
               return cell
           }
           
@@ -122,7 +126,7 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
       {
         
         return CGSize(width: UIScreen.main.bounds.width,
-                      height: cellHeights[indexPath.item])
+                      height: cellHeights[displayOrder[indexPath.item]])
       }
       
       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
@@ -163,6 +167,7 @@ extension HotelsViewController
     {
         if needRefreshData
         {
+            hotelsCollectionView.reloadData()
             needRefreshData = false
         }
     }
@@ -242,9 +247,19 @@ extension HotelsViewController
 {
     func filter(by filteringOptions: Set<FilteringOption>)
     {
-        if self.filteringOptions != filteringOptions, let comparator = getComparator(filteringOptions)
+        if self.filteringOptions != filteringOptions
         {
-            displayOrder = filteringOptions.isEmpty ? Array(0..<hotels.count) : hotels.sorted(by: comparator).compactMap{ getHotelIndexById($0.id) }
+            if filteringOptions.isEmpty
+            {
+                displayOrder = Array(0..<hotels.count)
+            }
+            else
+            {
+                if let comparator = getComparator(filteringOptions)
+                {
+                    displayOrder = hotels.sorted(by: comparator).compactMap{ getHotelIndexById($0.id) }
+                }
+            }
             
             self.filteringOptions = filteringOptions
             
@@ -267,9 +282,12 @@ extension HotelsViewController
 {
     func onSortingTapped()
     {
-        let hotelsFilterVC = HotelsFiltersViewController.create()
-        hotelsFilterVC.delegate = self
-        performSegue(withIdentifier: "goToFilters", sender: nil)
+        if let hotelsFilterVC = HotelsFiltersViewController.create(filteringOptions)
+        {
+            hotelsFilterVC.filterableDegate = self
+            hotelsFilterVC.modalPresentationStyle = .fullScreen
+            present(hotelsFilterVC, animated: true)
+        }
     }
 }
 //MARK: - Spinner View Function

@@ -22,12 +22,12 @@
                             <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="60p-ij-ec7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5E-FZ-eAW">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n5E-FZ-eAW" userLabel="Container View">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vq1-3L-ezV">
-                                            <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                                            <rect key="frame" x="0.0" y="89" width="375" height="662"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vRa-dI-nyA">
@@ -85,7 +85,6 @@
                     <connections>
                         <outlet property="filtersButton" destination="ycr-Df-Whf" id="Q5Y-Sr-XFx"/>
                         <outlet property="hotelsCollectionView" destination="Vq1-3L-ezV" id="vsb-rb-fMr"/>
-                        <segue destination="9B5-Yz-1FQ" kind="presentation" identifier="goToFilters" id="gWe-Zd-SHN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -95,18 +94,18 @@
         <!--Hotels Filters View Controller-->
         <scene sceneID="lip-tG-wBO">
             <objects>
-                <viewController id="9B5-Yz-1FQ" customClass="HotelsFiltersViewController" customModule="RestHotels" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HotelsFiltersViewController" id="9B5-Yz-1FQ" customClass="HotelsFiltersViewController" customModule="RestHotels" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oen-zh-ijS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundImage" translatesAutoresizingMaskIntoConstraints="NO" id="mCX-3f-SNH">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Yq-8f-HHR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQ0-r2-weC">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="768"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="CDD-Eb-RpU">
@@ -171,13 +170,13 @@
                                                         <switch opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="grV-Fg-4MP">
                                                             <rect key="frame" x="0.0" y="61" width="51" height="31"/>
                                                             <connections>
-                                                                <action selector="roomsIsOn:" destination="9B5-Yz-1FQ" eventType="valueChanged" id="bBp-03-FNv"/>
+                                                                <action selector="distanceIsOn:" destination="9B5-Yz-1FQ" eventType="valueChanged" id="iEK-La-nry"/>
                                                             </connections>
                                                         </switch>
                                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5wH-mh-WiU">
                                                             <rect key="frame" x="0.0" y="122" width="51" height="31"/>
                                                             <connections>
-                                                                <action selector="distanceIsOn:" destination="9B5-Yz-1FQ" eventType="valueChanged" id="LK1-pv-GX8"/>
+                                                                <action selector="roomsIsOn:" destination="9B5-Yz-1FQ" eventType="valueChanged" id="nd5-DD-n7b"/>
                                                             </connections>
                                                         </switch>
                                                     </subviews>
@@ -208,10 +207,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="qcG-e8-ELE"/>
                     <connections>
-                        <outlet property="distanceSwitch" destination="5wH-mh-WiU" id="2dx-5e-uhs"/>
+                        <outlet property="distanceSwitch" destination="grV-Fg-4MP" id="xNq-6i-5Ki"/>
                         <outlet property="doneButtonLbl" destination="xIb-4c-9TP" id="UTD-ax-Gjc"/>
                         <outlet property="resetButtonLbl" destination="0NH-10-AtP" id="dId-46-RKr"/>
-                        <outlet property="roomsSwitch" destination="grV-Fg-4MP" id="q6m-53-ray"/>
+                        <outlet property="roomsSwitch" destination="5wH-mh-WiU" id="jRb-Qp-ACr"/>
                         <outlet property="sortDistanceLbl" destination="yC6-En-9zo" id="utj-Ka-4fi"/>
                         <outlet property="sortRoomsLbl" destination="uxQ-PS-rfG" id="M41-FE-1Ex"/>
                     </connections>

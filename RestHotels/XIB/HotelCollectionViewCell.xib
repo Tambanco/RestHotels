@@ -10,10 +10,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HotelsViewController" customModule="RestHotels" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HotelCollectionViewCell" id="lYv-xl-S29" customClass="HotelCollectionViewCell" customModule="RestHotels" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="441" height="266"/>
+            <rect key="frame" x="0.0" y="0.0" width="441" height="278"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xR6-KN-ccJ">
-                <rect key="frame" x="0.0" y="0.0" width="441" height="266"/>
+                <rect key="frame" x="0.0" y="0.0" width="441" height="278"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lorem ipsum dolor sit amet, consectetur adipiscing." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HML-3s-hQz">
@@ -96,7 +96,7 @@
                     <constraint firstItem="TKY-pC-m6d" firstAttribute="trailing" secondItem="HML-3s-hQz" secondAttribute="trailing" id="ywg-E9-Nx2"/>
                 </constraints>
             </collectionViewCellContentView>
-            <size key="customSize" width="441" height="266"/>
+            <size key="customSize" width="441" height="278"/>
             <connections>
                 <outlet property="addressLabel" destination="TKY-pC-m6d" id="MrG-aW-gNA"/>
                 <outlet property="distanceLabel" destination="6co-2b-wNp" id="sFC-D5-4Zq"/>
@@ -104,7 +104,7 @@
                 <outlet property="starsLabel" destination="SFo-Nj-Gaj" id="vEy-q0-P4j"/>
                 <outlet property="vacantRoomsCountLabel" destination="QCU-Ot-fdG" id="veQ-fm-Vaq"/>
             </connections>
-            <point key="canvasLocation" x="-482" y="101"/>
+            <point key="canvasLocation" x="-483.33333333333337" y="104.46428571428571"/>
         </collectionViewCell>
     </objects>
 </document>
