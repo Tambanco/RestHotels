@@ -1,6 +1,0 @@
-framework module Pods_RestHotels {
-  umbrella header "Pods-RestHotels-umbrella.h"
-
-  export *
-  module * { export * }
-}

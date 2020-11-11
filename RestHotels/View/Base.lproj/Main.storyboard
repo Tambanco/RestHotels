@@ -20,33 +20,43 @@
                             </imageView>
                             <visualEffectView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="60p-ij-ec7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="n5E-FZ-eAW">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="n5E-FZ-eAW">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vq1-3L-ezV">
+                                            <rect key="frame" x="0.0" y="85" width="375" height="719"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vRa-dI-nyA">
+                                                <size key="itemSize" width="128" height="128"/>
+                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            </collectionViewFlowLayout>
+                                            <cells/>
+                                        </collectionView>
+                                    </subviews>
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Vq1-3L-ezV">
-                                <rect key="frame" x="0.0" y="60" width="375" height="691"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vRa-dI-nyA">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="b4f-5L-71M" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="0oI-HR-QI4"/>
+                            <constraint firstItem="60p-ij-ec7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="2bJ-ZW-GDM"/>
+                            <constraint firstItem="60p-ij-ec7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Ezv-UI-cVQ"/>
                             <constraint firstAttribute="bottom" secondItem="60p-ij-ec7" secondAttribute="bottom" id="H4z-K1-yox"/>
                             <constraint firstItem="b4f-5L-71M" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ILD-9b-nt6"/>
+                            <constraint firstItem="b4f-5L-71M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="REE-0d-TaY"/>
+                            <constraint firstAttribute="bottom" secondItem="b4f-5L-71M" secondAttribute="bottom" id="V9p-gs-2fW"/>
                             <constraint firstItem="60p-ij-ec7" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="WuP-Ng-DKQ"/>
                             <constraint firstItem="60p-ij-ec7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="bZN-vG-Zez"/>
                             <constraint firstItem="60p-ij-ec7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="d26-He-eMM"/>
+                            <constraint firstItem="b4f-5L-71M" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="eI4-ea-b5G"/>
+                            <constraint firstItem="60p-ij-ec7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="jFe-AM-Bkl"/>
+                            <constraint firstAttribute="bottom" secondItem="60p-ij-ec7" secondAttribute="bottom" id="kPL-bs-3aM"/>
+                            <constraint firstItem="b4f-5L-71M" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="kqu-oK-0yq"/>
                             <constraint firstAttribute="bottom" secondItem="b4f-5L-71M" secondAttribute="bottom" id="mqG-d1-60S"/>
                             <constraint firstItem="b4f-5L-71M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oDu-mY-jXo"/>
                         </constraints>
