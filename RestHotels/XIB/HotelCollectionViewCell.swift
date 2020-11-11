@@ -27,7 +27,7 @@ extension HotelCollectionViewCell
         addressLabel.text = hotel.address
         starsLabel.text = String(format: "%.2f", hotel.rating)
         distanceLabel.text = String(format: "%.2f", hotel.distance)
-        vacantRoomsCountLabel.text = String(format: "%.2f", hotel.vacantRoomsCount)
+        vacantRoomsCountLabel.text = String(format: "%d", hotel.vacantRoomsCount)
     }
 }
 
@@ -35,7 +35,7 @@ extension HotelCollectionViewCell
 {
     struct Constants
     {
-        static let verticalSpacing = CGFloat(145)
+        static let verticalSpacing = CGFloat(115)
         static let horisontalPaddings = CGFloat(32)
     }
 }
