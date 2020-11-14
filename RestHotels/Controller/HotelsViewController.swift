@@ -75,10 +75,10 @@ extension HotelsViewController
 //MARK: - Networking
 extension HotelsViewController
 {
-    func requestData() -> DataRequest
+    func requestData()
     {
-        AF.request("https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json").responseJSON
-        { response in
+        AF.request("https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json")
+            .responseJSON { response in
             switch response.result
             {
                 case .success(let value):
@@ -90,30 +90,6 @@ extension HotelsViewController
             }
         }
     }
-//        let url = URL(string: "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json")
-//        URLSession.shared.dataTask(with: url!) { (data, response, error) in
-//            if error == nil {
-//                do{
-//                    self.hotelsList = try JSONDecoder().decode([HotelJSON].self, from: data!)
-//                    print("Data successfully downloaded")
-//                    self.hotels = self.hotelsList.map{ Hotel( id: $0.id,
-//                                                              name: $0.name,
-//                                                              address: $0.address,
-//                                                              rating: $0.stars,
-//                                                              distance: $0.distance,
-//                                                              vacantRoomsCount: self.getVacantRoomCount($0.suites_availability)) }
-//                    DispatchQueue.main.async {
-//                        self.cellHeights = self.getCellHeights(self.hotels)
-//                        self.hotelsCollectionView.reloadData()
-//                        self.onDataRecieved(self.hotels)
-//                    }
-//
-//                }catch{
-//                    print("Download failure. Error: \(error)")
-//                }
-//            }
-//        }.resume()
-//    }
 }
     
 //MARK: - Update Hotels List
@@ -123,7 +99,27 @@ extension HotelsViewController
     {
         if jsonData.exists()
         {
-            
+            let rawHotelsList = jsonData[].arrayValue
+            if rawHotelsList.count > 0
+            {
+                rawHotelsList.forEach({ hotels.append( Hotel(id: $0["id"].int ?? 0,
+                                                             name: $0["name"].string ?? "no name",
+                                                             address: $0["address"].string ?? "no address",
+                                                             rating: $0["stars"].double ?? 0.0,
+                                                             distance: $0["distance"].double ?? 0.0,
+                                                             vacantRoomsCount: self.getVacantRoomCount($0["suites_availability"].string ?? "no vacant rooms")))
+                    DispatchQueue.main.async
+                    {
+                        self.cellHeights = self.getCellHeights(self.hotels)
+                        self.onDataRecieved(self.hotels)
+                        self.hotelsCollectionView.reloadData()
+                    }
+                })
+            }
+            else
+            {
+                print("No Data Available")
+            }
         }
     }
 }
@@ -132,36 +128,34 @@ extension HotelsViewController
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-      {
-        return cellHeights.count
-      }
-      
-      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-      {
-          if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HotelCollectionViewCell.self),
-                                                           for: indexPath) as? HotelCollectionViewCell
-          {
-              cell.initialize(hotels[displayOrder[indexPath.item]])
-            
-              return cell
-          }
-          
-          return UICollectionViewCell()
-      }
-      
-      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-      {
+    {
         
+        return cellHeights.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HotelCollectionViewCell.self),
+                                                         for: indexPath) as? HotelCollectionViewCell
+        {
+            cell.initialize(hotels[displayOrder[indexPath.item]])
+            
+            return cell
+        }
+        
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
         return CGSize(width: UIScreen.main.bounds.width,
                       height: cellHeights[displayOrder[indexPath.item]])
-      }
-      
-      func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
-      {
-          return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-      }
-   
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
+    {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
 }
 
 // MARK:- Data handling
@@ -212,7 +206,6 @@ extension HotelsViewController
     {
         if let dataToDisplay = dataToDisplay
         {
-            // Do smth
             print(dataToDisplay.id)
         }
     }
