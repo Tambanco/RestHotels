@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class HotelsViewController: UIViewController, Filterable
 {
@@ -20,7 +22,6 @@ class HotelsViewController: UIViewController, Filterable
     var displayOrder: [Int]                    = []
     var filteringOptions: Set<FilteringOption> = []
     var needRefreshData: Bool                  = false
-    var hotelsList                             = [HotelJSON]()
     var cellHeights: [CGFloat]                 = []
     
     
@@ -74,33 +75,59 @@ extension HotelsViewController
 //MARK: - Networking
 extension HotelsViewController
 {
-    func requestData()
+    func requestData() -> DataRequest
     {
-        let url = URL(string: "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json")
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            if error == nil {
-                do{
-                    self.hotelsList = try JSONDecoder().decode([HotelJSON].self, from: data!)
-                    print("Data successfully downloaded")
-                    self.hotels = self.hotelsList.map{ Hotel( id: $0.id,
-                                                              name: $0.name,
-                                                              address: $0.address,
-                                                              rating: $0.stars,
-                                                              distance: $0.distance,
-                                                              vacantRoomsCount: self.getVacantRoomCount($0.suites_availability)) }
-                    DispatchQueue.main.async {
-                        self.cellHeights = self.getCellHeights(self.hotels)
-                        self.hotelsCollectionView.reloadData()
-                        self.onDataRecieved(self.hotels)
-                    }
-                    
-                }catch{
-                    print("Download failure. Error: \(error)")
-                }
+        AF.request("https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json").responseJSON
+        { response in
+            switch response.result
+            {
+                case .success(let value):
+                    let json = JSON(value)
+                    self.updateHotelsList(jsonData: json)
+                   
+                case .failure(let error):
+                    print(error)
             }
-        }.resume()
+        }
+    }
+//        let url = URL(string: "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json")
+//        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+//            if error == nil {
+//                do{
+//                    self.hotelsList = try JSONDecoder().decode([HotelJSON].self, from: data!)
+//                    print("Data successfully downloaded")
+//                    self.hotels = self.hotelsList.map{ Hotel( id: $0.id,
+//                                                              name: $0.name,
+//                                                              address: $0.address,
+//                                                              rating: $0.stars,
+//                                                              distance: $0.distance,
+//                                                              vacantRoomsCount: self.getVacantRoomCount($0.suites_availability)) }
+//                    DispatchQueue.main.async {
+//                        self.cellHeights = self.getCellHeights(self.hotels)
+//                        self.hotelsCollectionView.reloadData()
+//                        self.onDataRecieved(self.hotels)
+//                    }
+//
+//                }catch{
+//                    print("Download failure. Error: \(error)")
+//                }
+//            }
+//        }.resume()
+//    }
+}
+    
+//MARK: - Update Hotels List
+extension HotelsViewController
+{
+    func updateHotelsList(jsonData: JSON)
+    {
+        if jsonData.exists()
+        {
+            
+        }
     }
 }
+
 //MARK:- UICollectionView
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {

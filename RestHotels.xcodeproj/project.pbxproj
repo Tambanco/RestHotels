@@ -21,9 +21,12 @@
 		56CE9A7D254755A60088FE13 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CE9A7C254755A60088FE13 /* SpinnerViewController.swift */; };
 		56D00BF625571C81002C9B3F /* HotelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56D00BF525571C81002C9B3F /* HotelCollectionViewCell.xib */; };
 		56E963D22557E2FB0053DAAD /* StringExtentsion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E963D12557E2FB0053DAAD /* StringExtentsion.swift */; };
+		F1885F9B49845E63CA14778C /* Pods_RestHotels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B24DA0ABC26292B4E8EF74E1 /* Pods_RestHotels.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D7B22C6D510FB2D64B4A495 /* Pods-RestHotels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestHotels.release.xcconfig"; path = "Target Support Files/Pods-RestHotels/Pods-RestHotels.release.xcconfig"; sourceTree = "<group>"; };
+		4D1D2125257BF92A358CCF1B /* Pods-RestHotels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestHotels.debug.xcconfig"; path = "Target Support Files/Pods-RestHotels/Pods-RestHotels.debug.xcconfig"; sourceTree = "<group>"; };
 		564E89962552BB0B0041C298 /* Hotel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotel.swift; sourceTree = "<group>"; };
 		565E1AC72549CD5400F263B6 /* HotelJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelJSON.swift; sourceTree = "<group>"; };
 		569835E02548AC3000F221E4 /* HotelsFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsFiltersViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		56CE9A7C254755A60088FE13 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		56D00BF525571C81002C9B3F /* HotelCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelCollectionViewCell.xib; sourceTree = "<group>"; };
 		56E963D12557E2FB0053DAAD /* StringExtentsion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtentsion.swift; sourceTree = "<group>"; };
+		B24DA0ABC26292B4E8EF74E1 /* Pods_RestHotels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RestHotels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,12 +51,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1885F9B49845E63CA14778C /* Pods_RestHotels.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B7576249C262142E4850C3F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D1D2125257BF92A358CCF1B /* Pods-RestHotels.debug.xcconfig */,
+				3D7B22C6D510FB2D64B4A495 /* Pods-RestHotels.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		565E1AC92549CDA000F263B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +101,8 @@
 			children = (
 				56C3053625446A59005C7E28 /* RestHotels */,
 				56C3053525446A59005C7E28 /* Products */,
+				3B7576249C262142E4850C3F /* Pods */,
+				6C8922C5E3AF945BE22821DF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,6 +140,14 @@
 			path = XIB;
 			sourceTree = "<group>";
 		};
+		6C8922C5E3AF945BE22821DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B24DA0ABC26292B4E8EF74E1 /* Pods_RestHotels.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -130,9 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 56C3054B25446A5A005C7E28 /* Build configuration list for PBXNativeTarget "RestHotels" */;
 			buildPhases = (
+				B6CD22E572C9E9BF38742977 /* [CP] Check Pods Manifest.lock */,
 				56C3053025446A59005C7E28 /* Sources */,
 				56C3053125446A59005C7E28 /* Frameworks */,
 				56C3053225446A59005C7E28 /* Resources */,
+				9FA9A751195676EA59C0A384 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,6 +216,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9FA9A751195676EA59C0A384 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RestHotels/Pods-RestHotels-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RestHotels/Pods-RestHotels-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RestHotels/Pods-RestHotels-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6CD22E572C9E9BF38742977 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RestHotels-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		56C3053025446A59005C7E28 /* Sources */ = {
@@ -346,6 +415,7 @@
 		};
 		56C3054C25446A5A005C7E28 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D1D2125257BF92A358CCF1B /* Pods-RestHotels.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -364,6 +434,7 @@
 		};
 		56C3054D25446A5A005C7E28 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D7B22C6D510FB2D64B4A495 /* Pods-RestHotels.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
