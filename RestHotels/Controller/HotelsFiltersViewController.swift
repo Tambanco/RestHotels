@@ -6,13 +6,12 @@
 //  Copyright © 2020 Tambanco. All rights reserved.
 //
 
+import UIKit
 
 protocol Filterable
 {
     func filter(by filteringOptions: Set<FilteringOption>)
 }
-
-import UIKit
 
 enum FilteringOption
 {

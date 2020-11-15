@@ -69,12 +69,64 @@ extension HotelInfoViewController
             switch response.result
             {
             case .success(let responseData):
-                self.hotelImageView.image = UIImage(data: responseData!, scale: 1)
+                if responseData != nil
+                {
+                   // self.hotelImageView.image = self.cropToBounds(image: UIImage(data: responseData, scale: 1)!, width: 400, height: 100)
+                }
+                else
+                {
+                    self.hotelImageView.backgroundColor = .gray
+                }
                 
             case .failure(let error):
                 print(error)
             }
         }
+    }
+}
+
+////MARK: - Utils
+//extension HotelInfoViewController
+//{
+//    func getHeight(imageHeight: Double) -> Double
+//    {
+//
+//    }
+//}
+
+//MARK: - Crop Image
+extension HotelInfoViewController
+{
+    func cropToBounds(image: UIImage, width: Double, height: Double) -> UIImage {
+
+        let cgimage = image.cgImage!
+        let contextImage: UIImage = UIImage(cgImage: cgimage)
+        let contextSize: CGSize = contextImage.size
+        var posX: CGFloat = 0.0
+        var posY: CGFloat = 0.0
+        var cgwidth: CGFloat = CGFloat(width)
+        var cgheight: CGFloat = CGFloat(height)
+
+        if contextSize.width > contextSize.height
+        {
+            posX = ((contextSize.width - contextSize.height) / 2)
+            posY = 0
+            cgwidth = contextSize.height
+            cgheight = contextSize.height
+        }
+        else
+        {
+            posX = 0
+            posY = ((contextSize.height - contextSize.width) / 2)
+            cgwidth = contextSize.width
+            cgheight = contextSize.width
+        }
+
+        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+        let imageRef: CGImage = cgimage.cropping(to: rect)!
+        let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+
+        return image
     }
 }
 
@@ -88,16 +140,7 @@ extension HotelInfoViewController
             let rawHotelInfo = jsonData[].dictionaryValue
             if rawHotelInfo.count > 0
             {
-                titleView.text = rawHotelInfo["name"]?.stringValue ?? "no name"
-                addressView.text = rawHotelInfo["address"]?.stringValue ?? "no address"
-                starsLabel.text = rawHotelInfo["stars"]?.stringValue ?? "no stars"
-                distanceLabel.text = String(format: "%.2f", rawHotelInfo["distance"]?.doubleValue ?? 0)
-                vacantRoomsLabel.text = rawHotelInfo["suites_availability"]?.stringValue ?? "no vacant rooms"
-                
-                imageID = rawHotelInfo["image"]?.stringValue ?? "no image ID"
-                loadImage(urlImage: createImageURL(urlImage: urlImage, imageID: imageID))
-                setupLabels()
-                
+                parserHotelInfo(rawHotelInfo: rawHotelInfo)
             }
         }
     }
@@ -114,6 +157,22 @@ extension HotelInfoViewController
     }
 }
 
+//MARK: - Parse JSON
+extension HotelInfoViewController
+{
+    func parserHotelInfo(rawHotelInfo: [String : JSON])
+    {
+        titleView.text = rawHotelInfo["name"]?.stringValue ?? "no name"
+        addressView.text = rawHotelInfo["address"]?.stringValue ?? "no address"
+        starsLabel.text = rawHotelInfo["stars"]?.stringValue ?? "no stars"
+        distanceLabel.text = String(format: "%.2f", rawHotelInfo["distance"]?.doubleValue ?? 0)
+        vacantRoomsLabel.text = rawHotelInfo["suites_availability"]?.stringValue ?? "no vacant rooms"
+        
+        imageID = rawHotelInfo["image"]?.stringValue ?? "no image ID"
+        loadImage(urlImage: createImageURL(urlImage: urlImage, imageID: imageID))
+        setupLabels()
+    }
+}
 //MARK: - Create URL
 extension HotelInfoViewController
 {

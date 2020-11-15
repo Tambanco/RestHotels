@@ -109,7 +109,7 @@ extension HotelsViewController
             let rawHotelsList = jsonData[].arrayValue
             if rawHotelsList.count > 0
             {
-                parserJSON(rawHotelsList: rawHotelsList)
+                parserHotelsList(rawHotelsList: rawHotelsList)
                 
                 DispatchQueue.main.async
                 {
@@ -129,7 +129,7 @@ extension HotelsViewController
 //MARK: - Parse JSON
 extension HotelsViewController
 {
-    func parserJSON(rawHotelsList: [JSON])
+    func parserHotelsList(rawHotelsList: [JSON])
     {
         rawHotelsList.forEach( { hotels.append( Hotel(id: $0["id"].int ?? 0,
                                                       name: $0["name"].string ?? "",
