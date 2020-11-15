@@ -86,8 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				56C3053B25446A59005C7E28 /* HotelsViewController.swift */,
-				56CEF9932561144E001BDA87 /* HotelInfoViewController.swift */,
 				569835E02548AC3000F221E4 /* HotelsFiltersViewController.swift */,
+				56CEF9932561144E001BDA87 /* HotelInfoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

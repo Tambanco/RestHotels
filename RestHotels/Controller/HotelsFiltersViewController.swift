@@ -52,11 +52,9 @@ extension HotelsFiltersViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        //        distanceSwitch.backgroundColor = UIColor.lightGray
-        //        distanceSwitch.layer.cornerRadius = 16.0
-        //        roomsSwitch.backgroundColor = UIColor.lightGray
-        //        roomsSwitch.layer.cornerRadius = 16.0
+        
         setupUI()
+        customizeSwitch()
     }
 }
 
@@ -141,5 +139,17 @@ extension HotelsFiltersViewController
         }
         
         return nil
+    }
+}
+
+//MARK: - Switch constructor
+extension HotelsFiltersViewController
+{
+    func customizeSwitch()
+    {
+        distanceSwitch.backgroundColor = UIColor.lightGray
+        distanceSwitch.layer.cornerRadius = 16.0
+        roomsSwitch.backgroundColor = UIColor.lightGray
+        roomsSwitch.layer.cornerRadius = 16.0
     }
 }

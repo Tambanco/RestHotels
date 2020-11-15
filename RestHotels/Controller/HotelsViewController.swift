@@ -13,11 +13,11 @@ import SwiftyJSON
 
 class HotelsViewController: UIViewController, Filterable, Informational
 {
-//MARK: - Outlets
+    //MARK: - Outlets
     @IBOutlet weak var hotelsCollectionView: UICollectionView!
     @IBOutlet weak var filtersButton: UIButton!
     
-//MARK:- Stateful
+    //MARK:- Stateful
     var hotels: [Hotel]                             = []
     var displayOrder: [Int]                         = []
     var filteringOptions: Set<FilteringOption>      = []
@@ -28,7 +28,7 @@ class HotelsViewController: UIViewController, Filterable, Informational
     var loadingView: UIView                         = UIView()
     var activityIndicator: UIActivityIndicatorView  = UIActivityIndicatorView()
     
-//MARK: - Buttons actions
+    //MARK: - Buttons actions
     @IBAction func filtersButtonPressed(_ sender: UIButton)
     {
         onSortingTapped()
@@ -81,8 +81,11 @@ extension HotelsViewController
 {
     func requestData(url: String)
     {
-        AF.request(url)
-            .responseJSON { response in
+        showActivityIndicator(uiView: self.view)
+        
+        AF.request(url).responseJSON { response in
+            self.hideActivityIndicator(self.view)
+
             switch response.result
             {
                 case .success(let value):
@@ -106,19 +109,14 @@ extension HotelsViewController
             let rawHotelsList = jsonData[].arrayValue
             if rawHotelsList.count > 0
             {
-                rawHotelsList.forEach({ hotels.append( Hotel(id: $0["id"].int ?? 0,
-                                                             name: $0["name"].string ?? "no name",
-                                                             address: $0["address"].string ?? "no address",
-                                                             rating: $0["stars"].double ?? 0.0,
-                                                             distance: $0["distance"].double ?? 0.0,
-                                                             vacantRoomsCount: self.getVacantRoomCount($0["suites_availability"].string ?? "no vacant rooms")))
-                    DispatchQueue.main.async
-                    {
-                        self.cellHeights = self.getCellHeights(self.hotels)
-                        self.onDataRecieved(self.hotels)
-                        self.hotelsCollectionView.reloadData()
-                    }
-                })
+                parserJSON(rawHotelsList: rawHotelsList)
+                
+                DispatchQueue.main.async
+                {
+                    self.cellHeights = self.getCellHeights(self.hotels)
+                    self.onDataRecieved(self.hotels)
+                    self.hotelsCollectionView.reloadData()
+                }
             }
             else
             {
@@ -128,12 +126,25 @@ extension HotelsViewController
     }
 }
 
+//MARK: - Parse JSON
+extension HotelsViewController
+{
+    func parserJSON(rawHotelsList: [JSON])
+    {
+        rawHotelsList.forEach( { hotels.append( Hotel(id: $0["id"].int ?? 0,
+                                                      name: $0["name"].string ?? "",
+                                                      address: $0["address"].string ?? "",
+                                                      rating: $0["stars"].double ?? 0.0,
+                                                      distance: $0["distance"].double ?? 0.0,
+                                                      vacantRoomsCount: self.getVacantRoomCount($0["suites_availability"].string ?? "")))
+        } )
+    }
+}
 //MARK:- UICollectionView
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        
         return cellHeights.count
     }
     
@@ -347,9 +358,13 @@ extension HotelsViewController
         container.addSubview(loadingView)
         uiView.addSubview(container)
         activityIndicator.startAnimating()
+        
+        self.activityIndicator = activityIndicator
+        self.loadingView = loadingView
+        self.container = container
     }
     
-    func hideActivityIndicator(uiView: UIView)
+    func hideActivityIndicator(_ uiView: UIView)
     {
         activityIndicator.stopAnimating()
         activityIndicator.hidesWhenStopped = true

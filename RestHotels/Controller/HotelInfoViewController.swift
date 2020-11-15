@@ -30,6 +30,8 @@ class HotelInfoViewController: UIViewController
     @IBOutlet weak var starsLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var vacantRoomsLabel: UILabel!
+    
+    @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
 }
 
 //MARK: - Life cycle
@@ -89,13 +91,26 @@ extension HotelInfoViewController
                 titleView.text = rawHotelInfo["name"]?.stringValue ?? "no name"
                 addressView.text = rawHotelInfo["address"]?.stringValue ?? "no address"
                 starsLabel.text = rawHotelInfo["stars"]?.stringValue ?? "no stars"
-                distanceLabel.text = String(format: "%.2f", rawHotelInfo["distance"]?.doubleValue as! CVarArg)
+                distanceLabel.text = String(format: "%.2f", rawHotelInfo["distance"]?.doubleValue ?? 0)
                 vacantRoomsLabel.text = rawHotelInfo["suites_availability"]?.stringValue ?? "no vacant rooms"
                 
                 imageID = rawHotelInfo["image"]?.stringValue ?? "no image ID"
                 loadImage(urlImage: createImageURL(urlImage: urlImage, imageID: imageID))
+                setupLabels()
+                
             }
         }
+    }
+    
+    func setupLabels()
+    {
+        titleView.font = UIFont.boldSystemFont(ofSize: 25.0)
+        titleView.lineBreakMode = .byWordWrapping
+        titleView.numberOfLines = 2
+        
+        addressView.font = UIFont.boldSystemFont(ofSize: 17.0)
+        addressView.lineBreakMode = .byWordWrapping
+        addressView.numberOfLines = 2
     }
 }
 
