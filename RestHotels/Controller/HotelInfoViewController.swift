@@ -18,8 +18,10 @@ class HotelInfoViewController: UIViewController
 {
     
     //MARK: - Properties
-    var urlHotelInfo = "https://raw.githubusercontent.com/iMofas/ios-android-test/master/40611.json"
+    var urlHotelInfo = "https://raw.githubusercontent.com/iMofas/ios-android-test/master/"
+    var urlImage = "https://github.com/iMofas/ios-android-test/raw/master/"
     var id = 0
+    var imageID = ""
 
     //MARK: - Outlets
     @IBOutlet weak var hotelImageView: UIImageView!
@@ -36,6 +38,9 @@ extension HotelInfoViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        requestData(url: createIdURL(urlHotelInfo: urlHotelInfo, id: id))
+        loadImage(urlImage: createImageURL(urlImage: urlImage, imageID: imageID))
     }
 }
 
@@ -57,6 +62,20 @@ extension HotelInfoViewController
             }
         }
     }
+    
+    func loadImage(urlImage: String)
+    {
+        AF.request(urlImage, method: .get).response{ response in
+            switch response.result
+            {
+            case .success(let responseData):
+                self.hotelImageView.image = UIImage(data: responseData!, scale: 1)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 //MARK: - Update UI
@@ -64,6 +83,36 @@ extension HotelInfoViewController
 {
     func updateUI(jsonData: JSON)
     {
+        if jsonData.exists()
+        {
+            let rawHotelInfo = jsonData[].dictionaryValue
+            if rawHotelInfo.count > 0
+            {
+                imageID = rawHotelInfo["image"]?.stringValue ?? "no image ID"
+                titleView.text = rawHotelInfo["name"]?.stringValue ?? "no name"
+                addressView.text = rawHotelInfo["address"]?.stringValue ?? "no address"
+                starsLabel.text = rawHotelInfo["stars"]?.stringValue ?? "no stars"
+                distanceLabel.text = String(format: "%.2f", rawHotelInfo["distance"]?.doubleValue as! CVarArg) ?? "no distance"
+                vacantRoomsLabel.text = rawHotelInfo["suites_availability"]?.stringValue ?? "no vacant rooms"
+            }
+        }
+    }
+}
+
+//MARK: - Create URL
+extension HotelInfoViewController
+{
+    func createIdURL(urlHotelInfo: String, id: Int) -> String
+    {
+        let urlForRequest = "\(urlHotelInfo)" + "\(id)" + ".json"
         
+        return urlForRequest
+    }
+    
+    func createImageURL(urlImage: String, imageID: String) -> String
+    {
+        let urlForImage = "\(urlImage)" + "\(imageID)"
+        
+        return urlForImage
     }
 }

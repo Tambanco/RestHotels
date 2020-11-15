@@ -164,7 +164,7 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         let vc = storyboard?.instantiateViewController(identifier: "HotelInfoViewController") as? HotelInfoViewController
-        vc?.id = hotels[indexPath.item].id
+        vc?.id = hotels[displayOrder[indexPath.item]].id
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }
