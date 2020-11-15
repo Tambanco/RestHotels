@@ -10,17 +10,17 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-protocol Informational {
+protocol Informational
+{
     
 }
 
 class HotelInfoViewController: UIViewController
 {
-    
     //MARK: - Properties
     var urlHotelInfo = "https://raw.githubusercontent.com/iMofas/ios-android-test/master/"
     var urlImage = "https://github.com/iMofas/ios-android-test/raw/master/"
-    var id = 0
+    var id: Int = 0
     var imageID = ""
 
     //MARK: - Outlets
@@ -40,7 +40,6 @@ extension HotelInfoViewController
         super.viewDidLoad()
         
         requestData(url: createIdURL(urlHotelInfo: urlHotelInfo, id: id))
-        loadImage(urlImage: createImageURL(urlImage: urlImage, imageID: imageID))
     }
 }
 
@@ -49,8 +48,7 @@ extension HotelInfoViewController
 {
     func requestData(url: String)
     {
-        AF.request(url)
-            .responseJSON { response in
+        AF.request(url).responseJSON { response in
             switch response.result
             {
                 case .success(let value):
@@ -88,12 +86,14 @@ extension HotelInfoViewController
             let rawHotelInfo = jsonData[].dictionaryValue
             if rawHotelInfo.count > 0
             {
-                imageID = rawHotelInfo["image"]?.stringValue ?? "no image ID"
                 titleView.text = rawHotelInfo["name"]?.stringValue ?? "no name"
                 addressView.text = rawHotelInfo["address"]?.stringValue ?? "no address"
                 starsLabel.text = rawHotelInfo["stars"]?.stringValue ?? "no stars"
-                distanceLabel.text = String(format: "%.2f", rawHotelInfo["distance"]?.doubleValue as! CVarArg) ?? "no distance"
+                distanceLabel.text = String(format: "%.2f", rawHotelInfo["distance"]?.doubleValue as! CVarArg)
                 vacantRoomsLabel.text = rawHotelInfo["suites_availability"]?.stringValue ?? "no vacant rooms"
+                
+                imageID = rawHotelInfo["image"]?.stringValue ?? "no image ID"
+                loadImage(urlImage: createImageURL(urlImage: urlImage, imageID: imageID))
             }
         }
     }
