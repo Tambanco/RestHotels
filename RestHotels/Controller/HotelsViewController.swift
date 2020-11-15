@@ -7,23 +7,26 @@
 //
 
 import UIKit
+import Foundation
 import Alamofire
 import SwiftyJSON
 
-class HotelsViewController: UIViewController, Filterable
+class HotelsViewController: UIViewController, Filterable, Informational
 {
 //MARK: - Outlets
-   
     @IBOutlet weak var hotelsCollectionView: UICollectionView!
     @IBOutlet weak var filtersButton: UIButton!
     
 //MARK:- Stateful
-    var hotels: [Hotel]                        = []
-    var displayOrder: [Int]                    = []
-    var filteringOptions: Set<FilteringOption> = []
-    var needRefreshData: Bool                  = false
-    var cellHeights: [CGFloat]                 = []
-    
+    var hotels: [Hotel]                             = []
+    var displayOrder: [Int]                         = []
+    var filteringOptions: Set<FilteringOption>      = []
+    var needRefreshData: Bool                       = false
+    var cellHeights: [CGFloat]                      = []
+    var urlOfHotelsList                             = "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json"
+    var container: UIView                           = UIView()
+    var loadingView: UIView                         = UIView()
+    var activityIndicator: UIActivityIndicatorView  = UIActivityIndicatorView()
     
 //MARK: - Buttons actions
     @IBAction func filtersButtonPressed(_ sender: UIButton)
@@ -39,8 +42,7 @@ extension HotelsViewController
     {
         super.viewDidLoad()
         
-        requestData()
-        //createSpinnerView()
+        requestData(url: urlOfHotelsList)
         setupUI()
     }
     
@@ -49,8 +51,10 @@ extension HotelsViewController
         super.viewWillAppear(animated)
         
         refreshCollectionViewIfNeeded()
+        
     }
 }
+
 //MARK:- Setup UI
 extension HotelsViewController
 {
@@ -75,14 +79,14 @@ extension HotelsViewController
 //MARK: - Networking
 extension HotelsViewController
 {
-    func requestData()
+    func requestData(url: String)
     {
-        AF.request("https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json")
+        AF.request(url)
             .responseJSON { response in
             switch response.result
             {
                 case .success(let value):
-                    let json = JSON(value)
+                    let json = JSON(value) 
                     self.updateHotelsList(jsonData: json)
                    
                 case .failure(let error):
@@ -156,6 +160,13 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        let vc = storyboard?.instantiateViewController(identifier: "HotelInfoViewController") as? HotelInfoViewController
+        vc?.id = hotels[indexPath.item].id
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
 }
 
 // MARK:- Data handling
@@ -167,7 +178,6 @@ extension HotelsViewController
         displayOrder       = Array(0..<raw.count)
     }
 }
-
 
 //MARK:- Utils
 extension HotelsViewController
@@ -310,25 +320,53 @@ extension HotelsViewController
         }
     }
 }
-//MARK: - Spinner View Function
+
+//MARK: - Acvtivity Indicator
 extension HotelsViewController
 {
-    func createSpinnerView()
+    func showActivityIndicator(uiView: UIView)
     {
-//        let child = SpinnerViewController()
-//        addChild(child)
-//        child.view.backgroundColor = .white
-////        child.view.frame = CGRect(x: view.layer.frame.width / 2, y: view.layer.frame.height / 2, width: 70, height: 70)
-//        child.view.frame = CGRect(x: 187.5, y: 406.0, width: 70, height: 70)
-//        view.addSubview(child.view)
-//        child.didMove(toParent: self)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//            child.willMove(toParent: nil)
-//            child.view.removeFromSuperview()
-//            child.removeFromParent()
-//        }
+        let container: UIView = UIView()
+        container.frame = uiView.frame
+        container.center = uiView.center
+        container.backgroundColor = UIColor(red: 163/255, green: 163/255, blue: 163/255, alpha: 0.3)
+
+        let loadingView: UIView = UIView()
+        loadingView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        loadingView.center = uiView.center
+        loadingView.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.7)
+        loadingView.clipsToBounds = true
+        loadingView.layer.cornerRadius = 10
+
+        let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        activityIndicator.style = UIActivityIndicatorView.Style.large
+        activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2,
+                                           y: loadingView.frame.size.height / 2)
+        loadingView.addSubview(activityIndicator)
+        container.addSubview(loadingView)
+        uiView.addSubview(container)
+        activityIndicator.startAnimating()
+    }
+    
+    func hideActivityIndicator(uiView: UIView)
+    {
+        activityIndicator.stopAnimating()
+        activityIndicator.hidesWhenStopped = true
+        loadingView.removeFromSuperview()
+        container.removeFromSuperview()
     }
 }
+
+//MARK: - Utils
+extension HotelsViewController
+{
+    func getVacantRoomCount(_ raw: String) -> Int
+    {
+        return raw.split(separator: ":").count
+    }
+}
+
 //MARK: - Custom buttom
 @IBDesignable extension UIButton
 {
@@ -357,14 +395,5 @@ extension HotelsViewController
             guard let color = layer.borderColor else { return nil }
             return UIColor(cgColor: color)
         }
-    }
-}
-
-//MARK: - Utils
-extension HotelsViewController
-{
-    func getVacantRoomCount(_ raw: String) -> Int
-    {
-        return raw.split(separator: ":").count
     }
 }

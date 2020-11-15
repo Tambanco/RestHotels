@@ -22,6 +22,7 @@ enum FilteringOption
 
 class HotelsFiltersViewController: UIViewController
 {
+    //MARK: - Properties
     var selectedFilteringOptions: Set<FilteringOption> = []
     
     //MARK: - Delegation
