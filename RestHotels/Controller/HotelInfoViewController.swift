@@ -66,11 +66,17 @@ extension HotelInfoViewController
     
     func loadImage(urlImage: String)
     {
-        hotelImageView.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(named: "placeholder.jpg"))
         hotelImageView.sd_imageIndicator = SDWebImageActivityIndicator.medium
-        
-        hotelImageView.image = cropToBounds(image: hotelImageView.image!, width: 354, height: 200)
-        
+        hotelImageView.sd_setImage(with: URL(string: urlImage)) { (image, error, cache, urls) in
+            if (error != nil)
+            {
+                self.hotelImageView.image = UIImage(named: "placeholder.jpg")
+            }
+            else
+            {
+                self.hotelImageView.image = self.cropToBounds(image: (image ?? UIImage(named: "placeholder.jpg"))!, width: 350, height: 200)
+            }
+        }
     }
 }
 
