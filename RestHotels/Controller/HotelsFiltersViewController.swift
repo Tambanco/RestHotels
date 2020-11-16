@@ -57,6 +57,15 @@ extension HotelsFiltersViewController
     }
 }
 
+// MARK:- Fake life cycle
+extension HotelsFiltersViewController
+{
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        filterableDegate?.filter(by: selectedFilteringOptions)
+    }
+}
+
 //MARK: - Setup UI
 extension HotelsFiltersViewController
 {
@@ -113,15 +122,6 @@ extension HotelsFiltersViewController
         {
             selectedFilteringOptions.insert(filteringOption)
         }
-    }
-}
-
-// MARK:- Fake life cycle
-extension HotelsFiltersViewController
-{
-    override func viewWillDisappear(_ animated: Bool)
-    {
-        filterableDegate?.filter(by: selectedFilteringOptions)
     }
 }
 

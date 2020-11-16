@@ -8,5 +8,6 @@ target 'RestHotels' do
   # Pods for RestHotels
 	pod 'Alamofire'
 	pod 'SwiftyJSON'
+	pod 'SDWebImage'
 
 end

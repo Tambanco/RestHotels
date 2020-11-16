@@ -385,28 +385,37 @@ extension HotelsViewController
 //MARK: - Custom buttom
 @IBDesignable extension UIButton
 {
-    @IBInspectable var borderWidth: CGFloat {
-        set {
+    @IBInspectable var borderWidth: CGFloat
+    {
+        set
+        {
             layer.borderWidth = newValue
         }
-        get {
+        get
+        {
             return layer.borderWidth
         }
     }
-    @IBInspectable var cornerRadius: CGFloat {
-        set {
+    @IBInspectable var cornerRadius: CGFloat
+    {
+        set
+        {
             layer.cornerRadius = newValue
         }
-        get {
+        get
+        {
             return layer.cornerRadius
         }
     }
-    @IBInspectable var borderColor: UIColor? {
-        set {
+    @IBInspectable var borderColor: UIColor?
+    {
+        set
+        {
             guard let uiColor = newValue else { return }
             layer.borderColor = uiColor.cgColor
         }
-        get {
+        get
+        {
             guard let color = layer.borderColor else { return nil }
             return UIColor(cgColor: color)
         }

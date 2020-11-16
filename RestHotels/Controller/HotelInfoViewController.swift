@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import SDWebImage
 
 protocol Informational
 {
@@ -65,34 +66,13 @@ extension HotelInfoViewController
     
     func loadImage(urlImage: String)
     {
-        AF.request(urlImage, method: .get).response{ response in
-            switch response.result
-            {
-            case .success(let responseData):
-                if responseData != nil
-                {
-                   // self.hotelImageView.image = self.cropToBounds(image: UIImage(data: responseData, scale: 1)!, width: 400, height: 100)
-                }
-                else
-                {
-                    self.hotelImageView.backgroundColor = .gray
-                }
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
+        hotelImageView.sd_setImage(with: URL(string: urlImage), placeholderImage: UIImage(named: "placeholder.jpg"))
+        hotelImageView.sd_imageIndicator = SDWebImageActivityIndicator.medium
+        
+        hotelImageView.image = cropToBounds(image: hotelImageView.image!, width: 354, height: 200)
+        
     }
 }
-
-////MARK: - Utils
-//extension HotelInfoViewController
-//{
-//    func getHeight(imageHeight: Double) -> Double
-//    {
-//
-//    }
-//}
 
 //MARK: - Crop Image
 extension HotelInfoViewController
@@ -162,13 +142,13 @@ extension HotelInfoViewController
 {
     func parserHotelInfo(rawHotelInfo: [String : JSON])
     {
-        titleView.text = rawHotelInfo["name"]?.stringValue ?? "no name"
-        addressView.text = rawHotelInfo["address"]?.stringValue ?? "no address"
-        starsLabel.text = rawHotelInfo["stars"]?.stringValue ?? "no stars"
+        titleView.text = rawHotelInfo["name"]?.stringValue ?? ""
+        addressView.text = rawHotelInfo["address"]?.stringValue ?? ""
+        starsLabel.text = rawHotelInfo["stars"]?.stringValue ?? ""
         distanceLabel.text = String(format: "%.2f", rawHotelInfo["distance"]?.doubleValue ?? 0)
-        vacantRoomsLabel.text = rawHotelInfo["suites_availability"]?.stringValue ?? "no vacant rooms"
+        vacantRoomsLabel.text = rawHotelInfo["suites_availability"]?.stringValue ?? ""
         
-        imageID = rawHotelInfo["image"]?.stringValue ?? "no image ID"
+        imageID = rawHotelInfo["image"]?.stringValue ?? ""
         loadImage(urlImage: createImageURL(urlImage: urlImage, imageID: imageID))
         setupLabels()
     }
