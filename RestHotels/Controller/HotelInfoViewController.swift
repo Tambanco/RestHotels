@@ -59,7 +59,7 @@ extension HotelInfoViewController
                     self.updateUI(jsonData: json)
                 case .failure(let error):
                     print(error)
-//                    HotelsViewController.callAlert("\(error)")
+                    self.showAlert("\(error)")
             }
         }
     }
@@ -68,9 +68,11 @@ extension HotelInfoViewController
     {
         hotelImageView.sd_imageIndicator = SDWebImageActivityIndicator.medium
         hotelImageView.sd_setImage(with: URL(string: urlImage)) { (image, error, cache, urls) in
+        self.hotelImageView.layer.cornerRadius = 20
+        self.hotelImageView.clipsToBounds = true
+            
             if (error != nil)
             {
-            	//UIAlertController.callAlert(error)
                 self.hotelImageView.image = UIImage(named: "placeholder.jpg")
             }
             else

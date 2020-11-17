@@ -106,7 +106,7 @@ extension HotelsViewController
                     self.updateHotelsList(jsonData: json)
                    
                 case .failure(let error):
-                    self.callAlert("\(error)")
+                    self.showAlert("\(error)")
             }
         }
     }
@@ -133,7 +133,7 @@ extension HotelsViewController
             }
             else
             {
-                callAlert("No Data Available")
+                showAlert("No Data Available")
             }
         }
     }
@@ -375,16 +375,6 @@ extension HotelsViewController
     }
 }
 
-// MARK:- Error Alert
-extension HotelsViewController
-{
-    func callAlert(_ errorMassage: String)
-    {
-        let alert = UIAlertController(title: "An Error occured", message: errorMassage, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-}
 //MARK: - Custom buttom
 @IBDesignable extension UIButton
 {
@@ -422,5 +412,16 @@ extension HotelsViewController
             guard let color = layer.borderColor else { return nil }
             return UIColor(cgColor: color)
         }
+    }
+}
+
+// MARK:- Error Alert
+extension UIViewController
+{
+    func showAlert(_ errorMassage: String)
+    {
+        let alert = UIAlertController(title: "An Error occured", message: errorMassage, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
