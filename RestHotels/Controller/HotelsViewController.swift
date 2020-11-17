@@ -13,11 +13,7 @@ import SwiftyJSON
 
 class HotelsViewController: UIViewController, Filterable, Informational
 {
-    //MARK: - Outlets
-    @IBOutlet weak var hotelsCollectionView: UICollectionView!
-    @IBOutlet weak var filtersButton: UIButton!
-    
-    //MARK:- Stateful
+    //MARK:- Properties
     var hotels: [Hotel]                             = []
     var displayOrder: [Int]                         = []
     var filteringOptions: Set<FilteringOption>      = []
@@ -27,6 +23,10 @@ class HotelsViewController: UIViewController, Filterable, Informational
     var container: UIView                           = UIView()
     var loadingView: UIView                         = UIView()
     var activityIndicator: UIActivityIndicatorView  = UIActivityIndicatorView()
+
+    //MARK: - Outlets
+    @IBOutlet weak var hotelsCollectionView: UICollectionView!
+    @IBOutlet weak var filtersButton: UIButton!
     
     //MARK: - Buttons actions
     @IBAction func filtersButtonPressed(_ sender: UIButton)
@@ -52,6 +52,19 @@ extension HotelsViewController
         
         refreshCollectionViewIfNeeded()
         
+    }
+}
+
+// MARK:- Fake life cycle
+extension HotelsViewController
+{
+    func refreshCollectionViewIfNeeded()
+    {
+        if needRefreshData
+        {
+            hotelsCollectionView.reloadData()
+            needRefreshData = false
+        }
     }
 }
 
@@ -93,7 +106,7 @@ extension HotelsViewController
                     self.updateHotelsList(jsonData: json)
                    
                 case .failure(let error):
-                    print(error)
+                    self.callAlert("\(error)")
             }
         }
     }
@@ -120,7 +133,7 @@ extension HotelsViewController
             }
             else
             {
-                print("No Data Available")
+                callAlert("No Data Available")
             }
         }
     }
@@ -140,6 +153,7 @@ extension HotelsViewController
         } )
     }
 }
+
 //MARK:- UICollectionView
 extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
@@ -180,6 +194,23 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
 }
 
+// MARK:- Fake collection view
+extension HotelsViewController
+{
+    func collectionView(_ displayItemAt: Int)
+    {
+        setCollectionViewCell(hotels[displayOrder[displayItemAt]])
+    }
+
+    func setCollectionViewCell(_ dataToDisplay: Hotel?)
+    {
+        if let dataToDisplay = dataToDisplay
+        {
+            print(dataToDisplay.id)
+        }
+    }
+}
+
 // MARK:- Data handling
 extension HotelsViewController
 {
@@ -200,35 +231,15 @@ extension HotelsViewController
                             $0.address.getHight(for: UIScreen.main.bounds.width - HotelCollectionViewCell.Constants.horisontalPaddings) +
                             HotelCollectionViewCell.Constants.verticalSpacing }
     }
-}
 
-// MARK:- Fake life cycle
-extension HotelsViewController
-{
-    func refreshCollectionViewIfNeeded()
+    func getHotelIndexById(_ id: Int) -> Int?
     {
-        if needRefreshData
-        {
-            hotelsCollectionView.reloadData()
-            needRefreshData = false
-        }
-    }
-}
-
-// MARK:- Fake collection view
-extension HotelsViewController
-{
-    func collectionView(_ displayItemAt: Int)
-    {
-        setCollectionViewCell(hotels[displayOrder[displayItemAt]])
+        hotels.enumerated().first{ $0.1.id == id }?.0
     }
 
-    func setCollectionViewCell(_ dataToDisplay: Hotel?)
+    func getVacantRoomCount(_ raw: String) -> Int
     {
-        if let dataToDisplay = dataToDisplay
-        {
-            print(dataToDisplay.id)
-        }
+        return raw.split(separator: ":").count
     }
 }
 
@@ -309,15 +320,6 @@ extension HotelsViewController
     }
 }
 
-// MARK:- Utls
-extension HotelsViewController
-{
-    func getHotelIndexById(_ id: Int) -> Int?
-    {
-        hotels.enumerated().first{ $0.1.id == id }?.0
-    }
-}
-
 // MARK:- UI handlers
 extension HotelsViewController
 {
@@ -373,15 +375,16 @@ extension HotelsViewController
     }
 }
 
-//MARK: - Utils
+// MARK:- Error Alert
 extension HotelsViewController
 {
-    func getVacantRoomCount(_ raw: String) -> Int
+    func callAlert(_ errorMassage: String)
     {
-        return raw.split(separator: ":").count
+        let alert = UIAlertController(title: "An Error occured", message: errorMassage, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
-
 //MARK: - Custom buttom
 @IBDesignable extension UIButton
 {

@@ -20,9 +20,9 @@ class HotelInfoViewController: UIViewController
 {
     //MARK: - Properties
     var urlHotelInfo = "https://raw.githubusercontent.com/iMofas/ios-android-test/master/"
-    var urlImage = "https://github.com/iMofas/ios-android-test/raw/master/"
-    var id: Int = 0
-    var imageID = ""
+    var urlImage 	 = "https://github.com/iMofas/ios-android-test/raw/master/"
+    var id: Int 	 = 0
+    var imageID 	 = ""
 
     //MARK: - Outlets
     @IBOutlet weak var hotelImageView: UIImageView!
@@ -57,9 +57,9 @@ extension HotelInfoViewController
                 case .success(let value):
                     let json = JSON(value)
                     self.updateUI(jsonData: json)
-                   
                 case .failure(let error):
                     print(error)
+//                    HotelsViewController.callAlert("\(error)")
             }
         }
     }
@@ -70,6 +70,7 @@ extension HotelInfoViewController
         hotelImageView.sd_setImage(with: URL(string: urlImage)) { (image, error, cache, urls) in
             if (error != nil)
             {
+            	//UIAlertController.callAlert(error)
                 self.hotelImageView.image = UIImage(named: "placeholder.jpg")
             }
             else
@@ -95,20 +96,20 @@ extension HotelInfoViewController
 
         if contextSize.width > contextSize.height
         {
-            posX = ((contextSize.width - contextSize.height) / 2)
-            posY = 0
-            cgwidth = contextSize.height
+            posX = 1.0
+            posY = 1.0
+            cgwidth = contextSize.width
             cgheight = contextSize.height
         }
         else
         {
-            posX = 0
-            posY = ((contextSize.height - contextSize.width) / 2)
+            posX = 1.0
+            posY = 1.0
             cgwidth = contextSize.width
-            cgheight = contextSize.width
+            cgheight = contextSize.height
         }
 
-        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth - 2.0, height: cgheight - 2.0)
         let imageRef: CGImage = cgimage.cropping(to: rect)!
         let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
 
@@ -159,6 +160,7 @@ extension HotelInfoViewController
         setupLabels()
     }
 }
+
 //MARK: - Create URL
 extension HotelInfoViewController
 {

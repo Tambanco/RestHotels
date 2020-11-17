@@ -24,9 +24,6 @@ class HotelsFiltersViewController: UIViewController
     //MARK: - Properties
     var selectedFilteringOptions: Set<FilteringOption> = []
     
-    //MARK: - Delegation
-    var filterableDegate: Filterable?
-    
     //MARK: - Outlets
     @IBOutlet weak var doneButtonLbl: UIButton!
     @IBOutlet weak var resetButtonLbl: UIButton!
@@ -34,6 +31,9 @@ class HotelsFiltersViewController: UIViewController
     @IBOutlet weak var sortRoomsLbl: UILabel!
     @IBOutlet weak var distanceSwitch: UISwitch!
     @IBOutlet weak var roomsSwitch: UISwitch!
+
+    //MARK: - Delegation
+    var filterableDegate: Filterable?
 }
 
 //MARK: - Initialization
