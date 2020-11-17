@@ -68,8 +68,6 @@ extension HotelInfoViewController
     {
         hotelImageView.sd_imageIndicator = SDWebImageActivityIndicator.medium
         hotelImageView.sd_setImage(with: URL(string: urlImage)) { (image, error, cache, urls) in
-        self.hotelImageView.layer.cornerRadius = 20
-        self.hotelImageView.clipsToBounds = true
             
             if (error != nil)
             {
@@ -78,6 +76,8 @@ extension HotelInfoViewController
             else
             {
                 self.hotelImageView.image = self.cropToBounds(image: (image ?? UIImage(named: "placeholder.jpg"))!, width: 350, height: 200)
+                self.hotelImageView.layer.cornerRadius = 20
+                self.hotelImageView.clipsToBounds = true
             }
         }
     }
