@@ -76,8 +76,6 @@ extension HotelInfoViewController
             else
             {
                 self.hotelImageView.image = self.cropToBounds(image: (image ?? UIImage(named: "placeholder.jpg"))!, width: 350, height: 200)
-                self.hotelImageView.layer.cornerRadius = 20
-                self.hotelImageView.clipsToBounds = true
             }
         }
     }

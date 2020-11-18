@@ -73,7 +73,7 @@ extension HotelsViewController
 {
     func setupUI()
     {
-        self.view.translatesAutoresizingMaskIntoConstraints = false
+        self.view.translatesAutoresizingMaskIntoConstraints = true
  
         setupHotelsCollectionView()
     }
