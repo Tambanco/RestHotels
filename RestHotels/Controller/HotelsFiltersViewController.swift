@@ -130,11 +130,15 @@ extension HotelsFiltersViewController
 {
     static func create(_ selectedOptions: Set<FilteringOption>) -> HotelsFiltersViewController?
     {
-        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HotelsFiltersViewController") as? HotelsFiltersViewController
-        {
-            vc.initialize(selectedOptions)
-            
-            return vc
+        if #available(iOS 13.0, *) {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HotelsFiltersViewController") as? HotelsFiltersViewController
+            {
+                vc.initialize(selectedOptions)
+                
+                return vc
+            }
+        } else {
+            // Fallback on earlier versions
         }
         
         return nil

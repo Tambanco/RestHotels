@@ -188,9 +188,18 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        let vc = storyboard?.instantiateViewController(identifier: "HotelInfoViewController") as? HotelInfoViewController
-        vc?.id = hotels[displayOrder[indexPath.item]].id
-        self.navigationController?.pushViewController(vc!, animated: true)
+        if #available(iOS 13.0, *)
+        {
+            let vc = storyboard?.instantiateViewController(identifier: "HotelInfoViewController") as? HotelInfoViewController
+            vc?.id = hotels[displayOrder[indexPath.item]].id
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
+        else
+        {
+            let vc = storyboard?.instantiateViewController(withIdentifier: "HotelInfoViewController") as? HotelInfoViewController
+            vc?.id = hotels[displayOrder[indexPath.item]].id
+            self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
 }
 
@@ -353,7 +362,11 @@ extension HotelsViewController
 
         let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
-        activityIndicator.style = UIActivityIndicatorView.Style.large
+        if #available(iOS 13.0, *) {
+            activityIndicator.style = UIActivityIndicatorView.Style.large
+        } else {
+            // Fallback on earlier versions
+        }
         activityIndicator.center = CGPoint(x: loadingView.frame.size.width / 2,
                                            y: loadingView.frame.size.height / 2)
         loadingView.addSubview(activityIndicator)
