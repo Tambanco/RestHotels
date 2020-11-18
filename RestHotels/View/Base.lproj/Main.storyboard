@@ -61,7 +61,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="RestHotels" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" id="DAz-G4-r1g">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="3Ew-b1-bWd">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="ycr-Df-Whf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="ycr-Df-Whf">
                                 <rect key="frame" x="244" y="5.5" width="60" height="33.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
