@@ -19,8 +19,8 @@ protocol Informational
 class HotelInfoViewController: UIViewController
 {
     //MARK: - Properties
-    var urlHotelInfo = "https://raw.githubusercontent.com/iMofas/ios-android-test/master/"
-    var urlImage 	 = "https://github.com/iMofas/ios-android-test/raw/master/"
+    var urlHotelInfo = "https://raw.githubusercontent.com/Tambanco/HotelsJSON/main/"
+    var urlImage 	 = "https://raw.githubusercontent.com/Tambanco/HotelsJSON/main/"
     var id: Int 	 = 0
     var imageID 	 = ""
 
@@ -75,7 +75,7 @@ extension HotelInfoViewController
             }
             else
             {
-                self.hotelImageView.image = self.cropToBounds(image: (image ?? UIImage(named: "placeholder.jpg"))!, width: 350, height: 200)
+                self.hotelImageView.image = self.cropToBounds(image: (image ?? UIImage(named: "placeholder.jpg"))!, width: 600, height: 600)
             }
         }
     }
@@ -96,20 +96,20 @@ extension HotelInfoViewController
 
         if contextSize.width > contextSize.height
         {
-            posX = 1.0
-            posY = 1.0
+            posX = 2.0
+            posY = 2.0
             cgwidth = contextSize.width
             cgheight = contextSize.height
         }
         else
         {
-            posX = 1.0
-            posY = 1.0
+            posX = 2.0
+            posY = 2.0
             cgwidth = contextSize.width
             cgheight = contextSize.height
         }
 
-        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth - 2.0, height: cgheight - 2.0)
+        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth - 4.0, height: cgheight - 4.0)
         let imageRef: CGImage = cgimage.cropping(to: rect)!
         let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
 

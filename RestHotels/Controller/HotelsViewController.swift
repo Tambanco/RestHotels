@@ -19,7 +19,7 @@ class HotelsViewController: UIViewController, Filterable, Informational
     var filteringOptions: Set<FilteringOption>      = []
     var needRefreshData: Bool                       = false
     var cellHeights: [CGFloat]                      = []
-    var urlOfHotelsList                             = "https://raw.githubusercontent.com/iMofas/ios-android-test/master/0777.json"
+    var urlOfHotelsList                             = "https://raw.githubusercontent.com/Tambanco/HotelsJSON/main/hotels.json"
     var container: UIView                           = UIView()
     var loadingView: UIView                         = UIView()
     var activityIndicator: UIActivityIndicatorView  = UIActivityIndicatorView()
@@ -102,9 +102,8 @@ extension HotelsViewController
             switch response.result
             {
                 case .success(let value):
-                    let json = JSON(value) 
+                    let json = JSON(value)
                     self.updateHotelsList(jsonData: json)
-                   
                 case .failure(let error):
                     self.showAlert("\(error)")
             }
