@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6co-2b-wNp"; */
+"6co-2b-wNp.text" = "Label";
+
+/* Class = "UILabel"; text = "Vacant Rooms:   "; ObjectID = "HGw-YF-OlX"; */
+"HGw-YF-OlX.text" = "Свободные номера:";
+
+/* Class = "UILabel"; text = "Lorem ipsum dolor sit amet, consectetur adipiscing."; ObjectID = "HML-3s-hQz"; */
+"HML-3s-hQz.text" = "Lorem ipsum dolor sit amet, consectetur adipiscing.";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QCU-Ot-fdG"; */
+"QCU-Ot-fdG.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SFo-Nj-Gaj"; */
+"SFo-Nj-Gaj.text" = "Label";
+
+/* Class = "UILabel"; text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquam purus mi, in dignissim lectus tincidunt vitae. Sed aliquam nisi vitae nulla lacinia, ut iaculis."; ObjectID = "TKY-pC-m6d"; */
+"TKY-pC-m6d.text" = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquam purus mi, in dignissim lectus tincidunt vitae. Sed aliquam nisi vitae nulla lacinia, ut iaculis.";
+
+/* Class = "UILabel"; text = "Distance:"; ObjectID = "XWQ-D3-hnK"; */
+"XWQ-D3-hnK.text" = "Дистанция:";
+
+/* Class = "UILabel"; text = "Assessment:"; ObjectID = "lVY-5P-hFo"; */
+"lVY-5P-hFo.text" = "Рейтинг:";
