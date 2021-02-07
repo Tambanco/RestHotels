@@ -55,6 +55,12 @@ extension HotelsFiltersViewController
         setupUI()
         customizeSwitch()
     }
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.view.superview?.bounds = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 200)
+        self.view.layer.cornerRadius = 10.0
+        self.view.clipsToBounds = true
+    }
 }
 
 // MARK:- Fake life cycle

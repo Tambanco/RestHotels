@@ -336,8 +336,8 @@ extension HotelsViewController
         if let hotelsFilterVC = HotelsFiltersViewController.create(filteringOptions)
         {
             hotelsFilterVC.filterableDegate = self
-            hotelsFilterVC.modalPresentationStyle = .fullScreen
-            present(hotelsFilterVC, animated: true)
+            hotelsFilterVC.modalPresentationStyle = .formSheet
+            present(hotelsFilterVC, animated: true, completion: nil)
         }
     }
 }
