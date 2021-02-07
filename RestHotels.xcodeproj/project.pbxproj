@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49BCF06425D0548B00C5B308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49BCF06625D0548B00C5B308 /* Localizable.strings */; };
 		564E89972552BB0B0041C298 /* Hotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564E89962552BB0B0041C298 /* Hotel.swift */; };
 		569835E12548AC3000F221E4 /* HotelsFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569835E02548AC3000F221E4 /* HotelsFiltersViewController.swift */; };
 		56C3053825446A59005C7E28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C3053725446A59005C7E28 /* AppDelegate.swift */; };
@@ -25,6 +26,10 @@
 
 /* Begin PBXFileReference section */
 		3D7B22C6D510FB2D64B4A495 /* Pods-RestHotels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestHotels.release.xcconfig"; path = "Target Support Files/Pods-RestHotels/Pods-RestHotels.release.xcconfig"; sourceTree = "<group>"; };
+		49BCF05E25D053CD00C5B308 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		49BCF05F25D053CD00C5B308 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		49BCF06525D0548B00C5B308 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		49BCF06825D0549100C5B308 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4D1D2125257BF92A358CCF1B /* Pods-RestHotels.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestHotels.debug.xcconfig"; path = "Target Support Files/Pods-RestHotels/Pods-RestHotels.debug.xcconfig"; sourceTree = "<group>"; };
 		564E89962552BB0B0041C298 /* Hotel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hotel.swift; sourceTree = "<group>"; };
 		569835E02548AC3000F221E4 /* HotelsFiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsFiltersViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +100,7 @@
 		56C3052B25446A59005C7E28 = {
 			isa = PBXGroup;
 			children = (
+				49BCF06625D0548B00C5B308 /* Localizable.strings */,
 				56C3053625446A59005C7E28 /* RestHotels */,
 				56C3053525446A59005C7E28 /* Products */,
 				3B7576249C262142E4850C3F /* Pods */,
@@ -188,6 +194,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 56C3052B25446A59005C7E28;
 			productRefGroup = 56C3053525446A59005C7E28 /* Products */;
@@ -204,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49BCF06425D0548B00C5B308 /* Localizable.strings in Resources */,
 				56C3054725446A5A005C7E28 /* LaunchScreen.storyboard in Resources */,
 				56C3054425446A5A005C7E28 /* Assets.xcassets in Resources */,
 				56C3053F25446A59005C7E28 /* Main.storyboard in Resources */,
@@ -275,10 +283,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		49BCF06625D0548B00C5B308 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				49BCF06525D0548B00C5B308 /* ru */,
+				49BCF06825D0549100C5B308 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		56C3053D25446A59005C7E28 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				56C3053E25446A59005C7E28 /* Base */,
+				49BCF05E25D053CD00C5B308 /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -287,6 +305,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				56C3054625446A5A005C7E28 /* Base */,
+				49BCF05F25D053CD00C5B308 /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -298,6 +317,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -344,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -359,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -399,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

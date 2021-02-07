@@ -1,0 +1,45 @@
+
+/* Class = "UIButton"; normalTitle = "Reset"; ObjectID = "0NH-10-AtP"; */
+"0NH-10-AtP.normalTitle" = "Сбросить";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "3Ew-b1-bWd"; */
+"3Ew-b1-bWd.title" = "Item";
+
+/* Class = "UINavigationItem"; title = "RestHotels"; ObjectID = "DAz-G4-r1g"; */
+"DAz-G4-r1g.title" = "RestHotels";
+
+/* Class = "UILabel"; text = "rooms"; ObjectID = "DY6-fl-cPg"; */
+"DY6-fl-cPg.text" = "rooms";
+
+/* Class = "UILabel"; text = "Assessment:"; ObjectID = "IF4-69-YEr"; */
+"IF4-69-YEr.text" = "Рейтинг:";
+
+/* Class = "UILabel"; text = "Distance:"; ObjectID = "Xii-TK-Ut1"; */
+"Xii-TK-Ut1.text" = "Дистанция:";
+
+/* Class = "UILabel"; text = "stars"; ObjectID = "YnQ-pK-3Y8"; */
+"YnQ-pK-3Y8.text" = "stars";
+
+/* Class = "UILabel"; text = "address"; ObjectID = "bVD-4C-xCE"; */
+"bVD-4C-xCE.text" = "address";
+
+/* Class = "UILabel"; text = "distance"; ObjectID = "cBq-Zr-3Xm"; */
+"cBq-Zr-3Xm.text" = "distance";
+
+/* Class = "UILabel"; text = "Address:"; ObjectID = "p0l-rt-Yfl"; */
+"p0l-rt-Yfl.text" = "Адрес:";
+
+/* Class = "UILabel"; text = "Vacant Rooms:"; ObjectID = "rSG-N4-LdZ"; */
+"rSG-N4-LdZ.text" = "Свободные номера:";
+
+/* Class = "UILabel"; text = "title"; ObjectID = "tSC-Fj-RYL"; */
+"tSC-Fj-RYL.text" = "title";
+
+/* Class = "UILabel"; text = "Sort By Available Rooms"; ObjectID = "uxQ-PS-rfG"; */
+"uxQ-PS-rfG.text" = "По количеству свободных номеров";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "xIb-4c-9TP"; */
+"xIb-4c-9TP.normalTitle" = "Готово";
+
+/* Class = "UILabel"; text = "Sort By Distance"; ObjectID = "yC6-En-9zo"; */
+"yC6-En-9zo.text" = "По удалённости";

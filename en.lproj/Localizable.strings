@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  RestHotels
+
+  Created by tambanco 🥳 on 07.02.2021.
+  Copyright © 2021 Tambanco. All rights reserved.
+*/
+"Assessment:" = "Assessment:";
+"Distance:" = "Distance:";
+"Vacant Rooms:" = "Vacant Rooms:";
+"Reset" = "Reset";
+"Done" = "Done";
+"Sort By Distance" = "Sort By Distance";
+"Sort By Available Rooms" = "Sort By Available Rooms";
