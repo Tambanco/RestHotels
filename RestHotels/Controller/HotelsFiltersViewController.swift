@@ -57,7 +57,7 @@ extension HotelsFiltersViewController
     }
     override func viewWillAppear(_ animated: Bool)
     {
-        self.view.frame = CGRect(x: 0, y: self.view.frame.height - 200, width: self.view.frame.size.width, height: 200)
+        self.view.frame = CGRect(x: 0, y: self.view.frame.height - 220, width: self.view.frame.size.width, height: 220)
         self.view.layer.cornerRadius = 10.0
         self.view.clipsToBounds = true
         self.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
