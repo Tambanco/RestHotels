@@ -11,7 +11,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class HotelsViewController: UIViewController, Filterable, Informational, Settings
+class HotelsViewController: UIViewController, Filterable, Informational
 {
     //MARK:- Properties
     var hotels: [Hotel]                             = []
@@ -33,10 +33,11 @@ class HotelsViewController: UIViewController, Filterable, Informational, Setting
     @IBAction func filtersButtonPressed(_ sender: UIButton)
     {
         onSortingTapped()
+        tapped()
     }
     @IBAction func settingsButtonPressed(_ sender: UIButton)
     {
-        onSettingsTapped()
+        tapped()
     }
 }
 
@@ -345,14 +346,6 @@ extension HotelsViewController
             present(hotelsFilterVC, animated: true, completion: nil)
         }
     }
-    
-    func onSettingsTapped()
-    {
-            let settingVC = SettingViewController()
-            settingVC.settingsDelegate = self
-            settingVC.modalPresentationStyle = .fullScreen
-            present(settingVC, animated: true, completion: nil)
-    }
 }
 
 //MARK: - Acvtivity Indicator
@@ -448,5 +441,15 @@ extension UIViewController
         let alert = UIAlertController(title: "An Error occured", message: errorMassage, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK:  Haptic
+extension HotelsViewController
+{
+    @objc func tapped()
+    {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+                    generator.impactOccurred()
     }
 }
