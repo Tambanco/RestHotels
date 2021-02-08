@@ -40,30 +40,55 @@
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aC9-SQ-Yop">
-                                <rect key="frame" x="184" y="446" width="80" height="33.333333333333329"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="lightTextColor"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Filters">
-                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="filtersButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTY-is-gPy"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="qEl-EG-6Ns" userLabel="ButtonsStackView">
+                                <rect key="frame" x="95.000000000000014" y="788" width="238.33333333333337" height="74"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aC9-SQ-Yop">
+                                        <rect key="frame" x="0.0" y="0.0" width="118.66666666666667" height="74"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.33333333333333331" green="0.63137254901960782" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Filters"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="filtersButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTY-is-gPy"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cHb-5B-9fh">
+                                        <rect key="frame" x="119.66666666666666" y="0.0" width="118.66666666666666" height="74"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.33333333333333331" green="0.63137254901960782" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Settings"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="filtersButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l69-bz-mkF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -72,14 +97,17 @@
                             <constraint firstAttribute="bottom" secondItem="60p-ij-ec7" secondAttribute="bottom" id="5yb-wA-uok"/>
                             <constraint firstItem="Vq1-3L-ezV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Daj-FB-dBF"/>
                             <constraint firstItem="Vq1-3L-ezV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IkY-ND-o3T"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qEl-EG-6Ns" secondAttribute="trailing" constant="94.666666666666629" id="JOy-yw-azD"/>
                             <constraint firstAttribute="trailing" secondItem="b4f-5L-71M" secondAttribute="trailing" id="Je9-wK-e66"/>
                             <constraint firstItem="60p-ij-ec7" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MWy-SH-Kbm"/>
                             <constraint firstAttribute="bottom" secondItem="b4f-5L-71M" secondAttribute="bottom" id="OPp-yD-gqG"/>
+                            <constraint firstItem="qEl-EG-6Ns" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="95.000000000000014" id="QK5-cn-2Dq"/>
                             <constraint firstItem="b4f-5L-71M" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="QNr-6j-pjO"/>
                             <constraint firstAttribute="trailing" secondItem="60p-ij-ec7" secondAttribute="trailing" id="XU0-iZ-E0X"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vq1-3L-ezV" secondAttribute="trailing" id="aij-Ly-cf1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vq1-3L-ezV" secondAttribute="bottom" id="b8i-6G-X9P"/>
                             <constraint firstItem="b4f-5L-71M" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mXE-2P-dlc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qEl-EG-6Ns" secondAttribute="bottom" constant="30" id="pq9-14-6an"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -376,9 +404,6 @@
     </scenes>
     <resources>
         <image name="BackgroundImage" width="2560" height="1600"/>
-        <systemColor name="lightTextColor">
-            <color white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
