@@ -11,7 +11,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class HotelsViewController: UIViewController, Filterable, Informational
+class HotelsViewController: UIViewController, Filterable, Informational, Settings
 {
     //MARK:- Properties
     var hotels: [Hotel]                             = []
@@ -27,11 +27,16 @@ class HotelsViewController: UIViewController, Filterable, Informational
     //MARK: - Outlets
     @IBOutlet weak var hotelsCollectionView: UICollectionView!
     @IBOutlet weak var filtersButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     
     //MARK: - Buttons actions
     @IBAction func filtersButtonPressed(_ sender: UIButton)
     {
         onSortingTapped()
+    }
+    @IBAction func settingsButtonPressed(_ sender: UIButton)
+    {
+        onSettingsTapped()
     }
 }
 
@@ -339,6 +344,14 @@ extension HotelsViewController
             hotelsFilterVC.modalPresentationStyle = .formSheet
             present(hotelsFilterVC, animated: true, completion: nil)
         }
+    }
+    
+    func onSettingsTapped()
+    {
+            let settingVC = SettingViewController()
+            settingVC.settingsDelegate = self
+            settingVC.modalPresentationStyle = .fullScreen
+            present(settingVC, animated: true, completion: nil)
     }
 }
 
