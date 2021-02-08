@@ -6,10 +6,12 @@
   Copyright © 2021 Tambanco. All rights reserved.
 */
 
-"Assessment:" = "Assessment:";
-"Distance:" = "Distance:";
-"Vacant Rooms:" = "Vacant Rooms:";
+"Assessment:" = "Рейтинг:";
+"Distance:" = "Дистанция:";
+"Vacant Rooms:" = "Свободные номера:";
 "Reset" = "Сбросить";
-"Done" = "Done";
-"Sort By Distance" = "Sort By Distance";
-"Sort By Available Rooms" = "Sort By Available Rooms";
+"Done" = "Готово";
+"Sort By Distance" = "По удалённости";
+"Sort By Available Rooms" = "По количеству свободных номеров";
+"Filters" = "Фильтры";
+
