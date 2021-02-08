@@ -44,8 +44,8 @@
 /* Class = "UILabel"; text = "Sort By Distance"; ObjectID = "yC6-En-9zo"; */
 "yC6-En-9zo.text" = "По удалённости";
 
-/* Class = "UIButton"; normalTitle = "Filters"; ObjectID = "ycr-Df-Whf"; */
-"ycr-Df-Whf.normalTitle" = "Фильтры";
+/* Class = "UIButton"; normalTitle = "Filters"; ObjectID = "aC9-SQ-Yop"; */
+"aC9-SQ-Yop.normalTitle" = "Фильтры";
 
 
 
