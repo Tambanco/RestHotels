@@ -44,12 +44,14 @@
                                 <rect key="frame" x="95.000000000000014" y="788" width="238.33333333333337" height="74"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aC9-SQ-Yop">
-                                        <rect key="frame" x="0.0" y="0.0" width="118.66666666666667" height="74"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="238.33333333333334" height="74"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.33333333333333331" green="0.63137254901960782" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                         <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Filters"/>
+                                        <state key="normal" title="Filters">
+                                            <color key="titleColor" systemColor="labelColor"/>
+                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="1"/>
@@ -58,33 +60,11 @@
                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
+                                                <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="filtersButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WTY-is-gPy"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cHb-5B-9fh">
-                                        <rect key="frame" x="119.66666666666666" y="0.0" width="118.66666666666666" height="74"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.33333333333333331" green="0.63137254901960782" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Settings"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EKK-po-X6f"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -115,7 +95,6 @@
                     <connections>
                         <outlet property="filtersButton" destination="aC9-SQ-Yop" id="Hhk-Iq-8ID"/>
                         <outlet property="hotelsCollectionView" destination="Vq1-3L-ezV" id="vsb-rb-fMr"/>
-                        <outlet property="settingsButton" destination="cHb-5B-9fh" id="w6q-f4-t56"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -406,6 +385,9 @@
     </scenes>
     <resources>
         <image name="BackgroundImage" width="2560" height="1600"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
