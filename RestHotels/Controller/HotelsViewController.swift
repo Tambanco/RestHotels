@@ -23,6 +23,13 @@ class HotelsViewController: UIViewController, Filterable, Informational
     var container: UIView                           = UIView()
     var loadingView: UIView                         = UIView()
     var activityIndicator: UIActivityIndicatorView  = UIActivityIndicatorView()
+    let visualEffectView: UIVisualEffectView =
+        {
+            let blurEffect = UIBlurEffect(style: .dark)
+            let view = UIVisualEffectView(effect: blurEffect)
+            view.translatesAutoresizingMaskIntoConstraints = false
+            return view
+        }()
 
     //MARK: - Outlets
     @IBOutlet weak var hotelsCollectionView: UICollectionView!
@@ -57,7 +64,6 @@ extension HotelsViewController
         super.viewWillAppear(animated)
         
         refreshCollectionViewIfNeeded()
-        
     }
 }
 
@@ -82,6 +88,7 @@ extension HotelsViewController
         self.view.translatesAutoresizingMaskIntoConstraints = true
  
         setupHotelsCollectionView()
+        setupVisualEffectView()
     }
     
     func setupHotelsCollectionView()
@@ -92,6 +99,16 @@ extension HotelsViewController
         
         hotelsCollectionView.register(UINib(nibName: String(describing: HotelCollectionViewCell.self), bundle: nil),
                                       forCellWithReuseIdentifier: String(describing: HotelCollectionViewCell.self))
+    }
+    
+    func setupVisualEffectView()
+    {
+        view.addSubview(visualEffectView)
+        visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        visualEffectView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        visualEffectView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        visualEffectView.alpha = 0
     }
 }
 
@@ -344,6 +361,7 @@ extension HotelsViewController
             hotelsFilterVC.filterableDegate = self
             hotelsFilterVC.modalPresentationStyle = .formSheet
             present(hotelsFilterVC, animated: true, completion: nil)
+            self.visualEffectView.alpha = 1
         }
     }
 }
