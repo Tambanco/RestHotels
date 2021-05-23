@@ -42,6 +42,8 @@
 		49357B55265A3C07002151F8 /* RestHotelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestHotelsTests.swift; sourceTree = "<group>"; };
 		49357B57265A3C07002151F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49357B62265A3C6F002151F8 /* HotelsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsViewControllerTests.swift; sourceTree = "<group>"; };
+		49357B7E265A4221002151F8 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49357B82265A4277002151F8 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49BCF05E25D053CD00C5B308 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		49BCF05F25D053CD00C5B308 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		49BCF06525D0548B00C5B308 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -189,6 +191,8 @@
 		6C8922C5E3AF945BE22821DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49357B82265A4277002151F8 /* SDWebImage.framework */,
+				49357B7E265A4221002151F8 /* SDWebImage.framework */,
 				B24DA0ABC26292B4E8EF74E1 /* Pods_RestHotels.framework */,
 			);
 			name = Frameworks;

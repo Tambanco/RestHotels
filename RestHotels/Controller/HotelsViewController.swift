@@ -10,7 +10,6 @@ import UIKit
 import Foundation
 import Alamofire
 import SwiftyJSON
-import SDWebImage
 
 class HotelsViewController: UIViewController, Filterable, Informational
 {

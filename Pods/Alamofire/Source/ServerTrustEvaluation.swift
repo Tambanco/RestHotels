@@ -587,7 +587,12 @@ public extension AlamofireExtension where ExtendedType == SecCertificate {
 
         guard let createdTrust = trust, trustCreationStatus == errSecSuccess else { return nil }
 
-        return SecTrustCopyKey(createdTrust)
+        if #available(iOS 14.0, *) {
+            return SecTrustCopyKey(createdTrust)
+        } else {
+            // Fallback on earlier versions
+        }
+        return SecTrustCopyPublicKey(createdTrust)
     }
 }
 
