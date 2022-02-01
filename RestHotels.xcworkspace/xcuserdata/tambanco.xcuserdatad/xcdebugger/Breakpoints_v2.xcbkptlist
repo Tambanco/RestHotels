@@ -3,4 +3,84 @@
    uuid = "3A652B1A-AF5B-4EEA-BB58-154D0EEA5848"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7464289-5D98-415B-9860-8B9D1CA50713"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RestHotels/HotelsModule/HotelsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "HotelsViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "B7464289-5D98-415B-9860-8B9D1CA50713 - c4ec0e3068c364e3"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; __C.UIVisualEffectView in variable initialization expression of RestHotels.HotelsViewController.visualEffectView : __C.UIVisualEffectView"
+                  moduleName = "RestHotels"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tambanco/Desktop/iOS/RestHotels/RestHotels/HotelsModule/HotelsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "B7464289-5D98-415B-9860-8B9D1CA50713 - 88ae5266b7c62969"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RestHotels.HotelsViewController.visualEffectView.getter : __C.UIVisualEffectView"
+                  moduleName = "RestHotels"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tambanco/Desktop/iOS/RestHotels/RestHotels/HotelsModule/HotelsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "B7464289-5D98-415B-9860-8B9D1CA50713 - 7a4afca1fce0e5de"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RestHotels.HotelsViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; RestHotels.HotelsViewController"
+                  moduleName = "RestHotels"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tambanco/Desktop/iOS/RestHotels/RestHotels/HotelsModule/HotelsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "640">
+               </Location>
+               <Location
+                  uuid = "B7464289-5D98-415B-9860-8B9D1CA50713 - 8b399195b3068fd9"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RestHotels.HotelsViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;RestHotels.HotelsViewController&gt;"
+                  moduleName = "RestHotels"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tambanco/Desktop/iOS/RestHotels/RestHotels/HotelsModule/HotelsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "616">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -22,6 +22,7 @@ class HotelsViewController: UIViewController, Filterable, Informational {
     var container: UIView                           = UIView()
     var loadingView: UIView                         = UIView()
     var activityIndicator: UIActivityIndicatorView  = UIActivityIndicatorView()
+//    var hotelsCollectionView: UICollectionView! = UICollectionView.init(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout.init())
     let visualEffectView: UIVisualEffectView = {
             let blurEffect = UIBlurEffect(style: .dark)
             let view = UIVisualEffectView(effect: blurEffect)
@@ -51,6 +52,7 @@ extension HotelsViewController {
         
         requestData(url: urlOfHotelsList)
         setupUI()
+//        initializeHotelsCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +60,7 @@ extension HotelsViewController {
         
         refreshCollectionViewIfNeeded()
     }
+
 }
 
 // MARK:- Fake life cycle
@@ -86,6 +89,7 @@ extension HotelsViewController {
         
         hotelsCollectionView.register(UINib(nibName: String(describing: HotelCollectionViewCell.self), bundle: nil),
                                       forCellWithReuseIdentifier: String(describing: HotelCollectionViewCell.self))
+//        hotelsCollectionView.register(HotelsCell.self, forCellWithReuseIdentifier: HotelsCell.reuseId)
     }
     
     func setupVisualEffectView() {
@@ -339,42 +343,6 @@ extension HotelsViewController {
         activityIndicator.hidesWhenStopped = true
         loadingView.removeFromSuperview()
         container.removeFromSuperview()
-    }
-}
-
-//MARK: - Custom buttom
-@IBDesignable extension UIButton {
-    @IBInspectable var borderWidth: CGFloat {
-        set {
-            layer.borderWidth = newValue
-        } get {
-            return layer.borderWidth
-        }
-    }
-    @IBInspectable var cornerRadius: CGFloat {
-        set {
-            layer.cornerRadius = newValue
-        } get {
-            return layer.cornerRadius
-        }
-    }
-    @IBInspectable var borderColor: UIColor? {
-        set {
-            guard let uiColor = newValue else { return }
-            layer.borderColor = uiColor.cgColor
-        } get {
-            guard let color = layer.borderColor else { return nil }
-            return UIColor(cgColor: color)
-        }
-    }
-}
-
-// MARK:- Error Alert
-extension UIViewController {
-    func showAlert(_ errorMassage: String) {
-        let alert = UIAlertController(title: "An Error occured", message: errorMassage, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 }
 
