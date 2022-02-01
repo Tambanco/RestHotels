@@ -85,13 +85,17 @@ public struct URLEncoding: ParameterEncoding {
         case brackets
         /// No brackets are appended. The key is encoded as is.
         case noBrackets
+        /// Brackets containing the item index are appended. This matches the jQuery and Node.js behavior.
+        case indexInBrackets
 
-        func encode(key: String) -> String {
+        func encode(key: String, atIndex index: Int) -> String {
             switch self {
             case .brackets:
                 return "\(key)[]"
             case .noBrackets:
                 return key
+            case .indexInBrackets:
+                return "\(key)[\(index)]"
             }
         }
     }
@@ -168,8 +172,8 @@ public struct URLEncoding: ParameterEncoding {
                 urlRequest.url = urlComponents.url
             }
         } else {
-            if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
-                urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
+            if urlRequest.headers["Content-Type"] == nil {
+                urlRequest.headers.update(.contentType("application/x-www-form-urlencoded; charset=utf-8"))
             }
 
             urlRequest.httpBody = Data(query(parameters).utf8)
@@ -187,27 +191,26 @@ public struct URLEncoding: ParameterEncoding {
     /// - Returns: The percent-escaped, URL encoded query string components.
     public func queryComponents(fromKey key: String, value: Any) -> [(String, String)] {
         var components: [(String, String)] = []
-
-        if let dictionary = value as? [String: Any] {
+        switch value {
+        case let dictionary as [String: Any]:
             for (nestedKey, value) in dictionary {
                 components += queryComponents(fromKey: "\(key)[\(nestedKey)]", value: value)
             }
-        } else if let array = value as? [Any] {
-            for value in array {
-                components += queryComponents(fromKey: arrayEncoding.encode(key: key), value: value)
+        case let array as [Any]:
+            for (index, value) in array.enumerated() {
+                components += queryComponents(fromKey: arrayEncoding.encode(key: key, atIndex: index), value: value)
             }
-        } else if let value = value as? NSNumber {
-            if value.isBool {
-                components.append((escape(key), escape(boolEncoding.encode(value: value.boolValue))))
+        case let number as NSNumber:
+            if number.isBool {
+                components.append((escape(key), escape(boolEncoding.encode(value: number.boolValue))))
             } else {
-                components.append((escape(key), escape("\(value)")))
+                components.append((escape(key), escape("\(number)")))
             }
-        } else if let bool = value as? Bool {
+        case let bool as Bool:
             components.append((escape(key), escape(boolEncoding.encode(value: bool))))
-        } else {
+        default:
             components.append((escape(key), escape("\(value)")))
         }
-
         return components
     }
 
@@ -266,8 +269,8 @@ public struct JSONEncoding: ParameterEncoding {
         do {
             let data = try JSONSerialization.data(withJSONObject: parameters, options: options)
 
-            if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
-                urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            if urlRequest.headers["Content-Type"] == nil {
+                urlRequest.headers.update(.contentType("application/json"))
             }
 
             urlRequest.httpBody = data
@@ -294,8 +297,8 @@ public struct JSONEncoding: ParameterEncoding {
         do {
             let data = try JSONSerialization.data(withJSONObject: jsonObject, options: options)
 
-            if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
-                urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            if urlRequest.headers["Content-Type"] == nil {
+                urlRequest.headers.update(.contentType("application/json"))
             }
 
             urlRequest.httpBody = data

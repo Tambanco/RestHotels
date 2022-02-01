@@ -7,8 +7,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import <SDWebImageCompat.h>
-#import <NSData+ImageContentType.h>
+#import "SDWebImageCompat.h"
+#import "NSData+ImageContentType.h"
 
 typedef NSString * SDImageCoderOption NS_STRING_ENUM;
 typedef NSDictionary<SDImageCoderOption, id> SDImageCoderOptions;
@@ -93,7 +93,7 @@ FOUNDATION_EXPORT SDImageCoderOption _Nonnull const SDImageCoderEncodeEmbedThumb
  But this may be useful for some custom coders, because some business logic may dependent on things other than image or image data information only.
  See `SDWebImageContext` for more detailed information.
  */
-FOUNDATION_EXPORT SDImageCoderOption _Nonnull const SDImageCoderWebImageContext API_DEPRECATED("The coder component will be seperated from Core subspec in the future. Update your code to not rely on this context option.", macos(10.10, API_TO_BE_DEPRECATED), ios(8.0, API_TO_BE_DEPRECATED), tvos(9.0, API_TO_BE_DEPRECATED), watchos(2.0, API_TO_BE_DEPRECATED));;
+FOUNDATION_EXPORT SDImageCoderOption _Nonnull const SDImageCoderWebImageContext API_DEPRECATED("The coder component will be seperated from Core subspec in the future. Update your code to not rely on this context option.", macos(10.10, API_TO_BE_DEPRECATED), ios(8.0, API_TO_BE_DEPRECATED), tvos(9.0, API_TO_BE_DEPRECATED), watchos(2.0, API_TO_BE_DEPRECATED));
 
 #pragma mark - Coder
 /**
