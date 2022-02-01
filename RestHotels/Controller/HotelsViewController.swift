@@ -11,8 +11,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class HotelsViewController: UIViewController, Filterable, Informational
-{
+class HotelsViewController: UIViewController, Filterable, Informational {
     //MARK:- Properties
     var hotels: [Hotel]                             = []
     var displayOrder: [Int]                         = []
