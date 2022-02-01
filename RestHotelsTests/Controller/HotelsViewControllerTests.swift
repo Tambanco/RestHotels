@@ -27,6 +27,4 @@ class HotelsViewControllerTests: XCTestCase {
         
         XCTAssertNotNil(sut.collectionView)
     }
- 
-
 }
