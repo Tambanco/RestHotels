@@ -40,8 +40,7 @@ class HotelsViewController: UIViewController, Filterable, Informational {
         onSortingTapped()
         tapped()
     }
-    @IBAction func settingsButtonPressed(_ sender: UIButton)
-    {
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
         tapped()
     }
 }
