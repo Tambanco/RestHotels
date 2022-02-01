@@ -35,8 +35,7 @@ class HotelsFiltersViewController: UIViewController {
 
 //MARK: - Initialization
 extension HotelsFiltersViewController {
-    func initialize(_ options: Set<FilteringOption>)
-    {
+    func initialize(_ options: Set<FilteringOption>) {
         selectedFilteringOptions = options
     }
 }

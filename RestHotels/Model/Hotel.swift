@@ -8,8 +8,7 @@
 
 import UIKit
 
-struct Hotel
-{
+struct Hotel {
     let id:                 Int
     let name:               String
     let address:            String
@@ -18,4 +17,3 @@ struct Hotel
     let vacantRoomsCount:   Int
     
 }
-
