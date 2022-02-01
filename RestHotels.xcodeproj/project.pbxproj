@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		49357B56265A3C07002151F8 /* RestHotelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49357B55265A3C07002151F8 /* RestHotelsTests.swift */; };
 		49357B63265A3C6F002151F8 /* HotelsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49357B62265A3C6F002151F8 /* HotelsViewControllerTests.swift */; };
+		49633ABF27A911D200C46ED0 /* HotelsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49633ABE27A911D200C46ED0 /* HotelsCell.swift */; };
 		49BCF06425D0548B00C5B308 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49BCF06625D0548B00C5B308 /* Localizable.strings */; };
 		49BCF08325D0758E00C5B308 /* HotelCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49BCF08525D0758E00C5B308 /* HotelCollectionViewCell.xib */; };
 		564E89972552BB0B0041C298 /* Hotel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564E89962552BB0B0041C298 /* Hotel.swift */; };
@@ -44,6 +45,7 @@
 		49357B62265A3C6F002151F8 /* HotelsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsViewControllerTests.swift; sourceTree = "<group>"; };
 		49357B7E265A4221002151F8 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49357B82265A4277002151F8 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49633ABE27A911D200C46ED0 /* HotelsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelsCell.swift; sourceTree = "<group>"; };
 		49BCF05E25D053CD00C5B308 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		49BCF05F25D053CD00C5B308 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		49BCF06525D0548B00C5B308 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			children = (
 				56C3053B25446A59005C7E28 /* HotelsViewController.swift */,
 				56C3054E2544C433005C7E28 /* HotelCollectionViewCell.swift */,
+				49633ABE27A911D200C46ED0 /* HotelsCell.swift */,
 				49BCF08525D0758E00C5B308 /* HotelCollectionViewCell.xib */,
 			);
 			path = HotelsModule;
@@ -355,6 +358,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49633ABF27A911D200C46ED0 /* HotelsCell.swift in Sources */,
 				564E89972552BB0B0041C298 /* Hotel.swift in Sources */,
 				56C3054225446A59005C7E28 /* RestHotels.xcdatamodeld in Sources */,
 				56C3054F2544C433005C7E28 /* HotelCollectionViewCell.swift in Sources */,
