@@ -114,6 +114,16 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		49633ABD27A9112600C46ED0 /* HotelsModule */ = {
+			isa = PBXGroup;
+			children = (
+				56C3053B25446A59005C7E28 /* HotelsViewController.swift */,
+				56C3054E2544C433005C7E28 /* HotelCollectionViewCell.swift */,
+				49BCF08525D0758E00C5B308 /* HotelCollectionViewCell.xib */,
+			);
+			path = HotelsModule;
+			sourceTree = "<group>";
+		};
 		565E1AC92549CDA000F263B6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +144,6 @@
 		565E1ACB2549CDE200F263B6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				56C3053B25446A59005C7E28 /* HotelsViewController.swift */,
 				569835E02548AC3000F221E4 /* HotelsFiltersViewController.swift */,
 				56CEF9932561144E001BDA87 /* HotelInfoViewController.swift */,
 			);
@@ -169,23 +178,14 @@
 				56C3053925446A59005C7E28 /* SceneDelegate.swift */,
 				56E963D12557E2FB0053DAAD /* StringExtentsion.swift */,
 				565E1AC92549CDA000F263B6 /* Model */,
+				49633ABD27A9112600C46ED0 /* HotelsModule */,
 				565E1ACB2549CDE200F263B6 /* Controller */,
 				565E1ACA2549CDBF00F263B6 /* View */,
-				56E963D3255803DD0053DAAD /* XIB */,
 				56C3054325446A5A005C7E28 /* Assets.xcassets */,
 				56C3054825446A5A005C7E28 /* Info.plist */,
 				56C3054025446A59005C7E28 /* RestHotels.xcdatamodeld */,
 			);
 			path = RestHotels;
-			sourceTree = "<group>";
-		};
-		56E963D3255803DD0053DAAD /* XIB */ = {
-			isa = PBXGroup;
-			children = (
-				56C3054E2544C433005C7E28 /* HotelCollectionViewCell.swift */,
-				49BCF08525D0758E00C5B308 /* HotelCollectionViewCell.xib */,
-			);
-			path = XIB;
 			sourceTree = "<group>";
 		};
 		6C8922C5E3AF945BE22821DF /* Frameworks */ = {
