@@ -8,19 +8,16 @@
 
 import UIKit
 
-protocol Filterable
-{
+protocol Filterable {
     func filter(by filteringOptions: Set<FilteringOption>)
 }
 
-enum FilteringOption
-{
+enum FilteringOption {
     case byDistance
     case byRoomAvailability
 }
 
-class HotelsFiltersViewController: UIViewController
-{
+class HotelsFiltersViewController: UIViewController {
     //MARK: - Properties
     var selectedFilteringOptions: Set<FilteringOption> = []
     
@@ -37,8 +34,7 @@ class HotelsFiltersViewController: UIViewController
 }
 
 //MARK: - Initialization
-extension HotelsFiltersViewController
-{
+extension HotelsFiltersViewController {
     func initialize(_ options: Set<FilteringOption>)
     {
         selectedFilteringOptions = options
@@ -46,17 +42,14 @@ extension HotelsFiltersViewController
 }
 
 //MARK: - Life cycle
-extension HotelsFiltersViewController
-{
-    override func viewDidLoad()
-    {
+extension HotelsFiltersViewController {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
         customizeSwitch()
     }
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         self.view.frame = CGRect(x: 0, y: self.view.frame.height - 220, width: self.view.frame.size.width, height: 220)
         self.view.layer.cornerRadius = 10.0
         self.view.clipsToBounds = true
@@ -65,24 +58,19 @@ extension HotelsFiltersViewController
 }
 
 // MARK:- Fake life cycle
-extension HotelsFiltersViewController
-{
-    override func viewWillDisappear(_ animated: Bool)
-    {
+extension HotelsFiltersViewController {
+    override func viewWillDisappear(_ animated: Bool) {
         filterableDegate?.filter(by: selectedFilteringOptions)
     }
 }
 
 //MARK: - Setup UI
-extension HotelsFiltersViewController
-{
-    func setupUI()
-    {
+extension HotelsFiltersViewController {
+    func setupUI() {
         setupFilteringOptions()
     }
     
-    func setupFilteringOptions()
-    {
+    func setupFilteringOptions() {
         let switchSettings: [(UISwitch, Bool)] = [(distanceSwitch, selectedFilteringOptions.contains(.byDistance)),
                                                   (roomsSwitch, selectedFilteringOptions.contains(.byRoomAvailability))]
         
@@ -91,55 +79,44 @@ extension HotelsFiltersViewController
 }
 
 //MARK: - UI handlers
-extension HotelsFiltersViewController
-{
+extension HotelsFiltersViewController {
     //MARK: - Done Button Functionality
-    @IBAction func doneButtonPressed(_ sender: UIButton)
-    {
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
     //MARK: - Reset Button Functionality
-    @IBAction func resetButtonPressed(_ sender: UIButton)
-    {
+    @IBAction func resetButtonPressed(_ sender: UIButton) {
         selectedFilteringOptions.removeAll()
         
         dismiss(animated: true, completion: nil)
     }
     
     //MARK: - Distance Button Functionality
-    @IBAction func distanceIsOn(_ sender: UISwitch)
-    {
+    @IBAction func distanceIsOn(_ sender: UISwitch) {
         toggleFilteringOptions(.byDistance)
     }
     
     //MARK: - Room Availability Button Functionality
-    @IBAction func roomsIsOn(_ sender: UISwitch)
-    {
+    @IBAction func roomsIsOn(_ sender: UISwitch) {
         toggleFilteringOptions(.byRoomAvailability)
     }
     
-    func toggleFilteringOptions(_ filteringOption: FilteringOption)
-    {
-        if selectedFilteringOptions.contains(filteringOption)
-        {
+    func toggleFilteringOptions(_ filteringOption: FilteringOption) {
+        if selectedFilteringOptions.contains(filteringOption) {
             selectedFilteringOptions.remove(filteringOption)
         }
-        else
-        {
+        else {
             selectedFilteringOptions.insert(filteringOption)
         }
     }
 }
 
 // MARK:- Instantiation
-extension HotelsFiltersViewController
-{
-    static func create(_ selectedOptions: Set<FilteringOption>) -> HotelsFiltersViewController?
-    {
+extension HotelsFiltersViewController {
+    static func create(_ selectedOptions: Set<FilteringOption>) -> HotelsFiltersViewController? {
         if #available(iOS 13.0, *) {
-            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HotelsFiltersViewController") as? HotelsFiltersViewController
-            {
+            if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "HotelsFiltersViewController") as? HotelsFiltersViewController {
                 vc.initialize(selectedOptions)
                 
                 return vc
@@ -153,8 +130,7 @@ extension HotelsFiltersViewController
 }
 
 //MARK: - Switch constructor
-extension HotelsFiltersViewController
-{
+extension HotelsFiltersViewController {
     func customizeSwitch()
     {
         distanceSwitch.backgroundColor = UIColor.lightGray
