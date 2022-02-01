@@ -8,8 +8,7 @@
 
 import UIKit
 
-class HotelCollectionViewCell: UICollectionViewCell
-{
+class HotelCollectionViewCell: UICollectionViewCell {
     //MARK: - Outlets
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -19,10 +18,8 @@ class HotelCollectionViewCell: UICollectionViewCell
         
 }
 
-extension HotelCollectionViewCell
-{
-    func initialize(_ hotel: Hotel)
-    {
+extension HotelCollectionViewCell {
+    func initialize(_ hotel: Hotel) {
         nameLabel.text = hotel.name
         addressLabel.text = hotel.address
         starsLabel.text = String(format: "%.2f", hotel.rating)
@@ -31,10 +28,8 @@ extension HotelCollectionViewCell
     }
 }
 
-extension HotelCollectionViewCell
-{
-    struct Constants
-    {
+extension HotelCollectionViewCell {
+    struct Constants {
         static let verticalSpacing = CGFloat(115)
         static let horisontalPaddings = CGFloat(32)
     }

@@ -128,3 +128,6 @@ iOSInjectionProject/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,swift,xcode
+*.xcuserstate
+RestHotels.xcworkspace/xcuserdata/tambanco.xcuserdatad/UserInterfaceState.xcuserstate
+RestHotels.xcworkspace/xcuserdata/tambanco.xcuserdatad/UserInterfaceState.xcuserstate

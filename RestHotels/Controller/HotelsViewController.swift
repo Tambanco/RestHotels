@@ -11,8 +11,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class HotelsViewController: UIViewController, Filterable, Informational
-{
+class HotelsViewController: UIViewController, Filterable, Informational {
     //MARK:- Properties
     var hotels: [Hotel]                             = []
     var displayOrder: [Int]                         = []
@@ -23,8 +22,7 @@ class HotelsViewController: UIViewController, Filterable, Informational
     var container: UIView                           = UIView()
     var loadingView: UIView                         = UIView()
     var activityIndicator: UIActivityIndicatorView  = UIActivityIndicatorView()
-    let visualEffectView: UIVisualEffectView =
-        {
+    let visualEffectView: UIVisualEffectView = {
             let blurEffect = UIBlurEffect(style: .dark)
             let view = UIVisualEffectView(effect: blurEffect)
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -37,30 +35,25 @@ class HotelsViewController: UIViewController, Filterable, Informational
     @IBOutlet weak var settingsButton: UIButton!
     
     //MARK: - Buttons actions
-    @IBAction func filtersButtonPressed(_ sender: UIButton)
-    {
+    @IBAction func filtersButtonPressed(_ sender: UIButton) {
         onSortingTapped()
         tapped()
     }
-    @IBAction func settingsButtonPressed(_ sender: UIButton)
-    {
+    @IBAction func settingsButtonPressed(_ sender: UIButton) {
         tapped()
     }
 }
 
 //MARK: - Life cycle
-extension HotelsViewController
-{
-    override func viewDidLoad()
-    {
+extension HotelsViewController {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         requestData(url: urlOfHotelsList)
         setupUI()
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         refreshCollectionViewIfNeeded()
@@ -68,12 +61,9 @@ extension HotelsViewController
 }
 
 // MARK:- Fake life cycle
-extension HotelsViewController
-{
-    func refreshCollectionViewIfNeeded()
-    {
-        if needRefreshData
-        {
+extension HotelsViewController {
+    func refreshCollectionViewIfNeeded(){
+        if needRefreshData{
             hotelsCollectionView.reloadData()
             needRefreshData = false
         }
@@ -81,18 +71,15 @@ extension HotelsViewController
 }
 
 //MARK:- Setup UI
-extension HotelsViewController
-{
-    func setupUI()
-    {
+extension HotelsViewController {
+    func setupUI() {
         self.view.translatesAutoresizingMaskIntoConstraints = true
  
         setupHotelsCollectionView()
         setupVisualEffectView()
     }
     
-    func setupHotelsCollectionView()
-    {
+    func setupHotelsCollectionView() {
         hotelsCollectionView.contentInsetAdjustmentBehavior = .never
         hotelsCollectionView.delegate   = self
         hotelsCollectionView.dataSource = self
@@ -101,8 +88,7 @@ extension HotelsViewController
                                       forCellWithReuseIdentifier: String(describing: HotelCollectionViewCell.self))
     }
     
-    func setupVisualEffectView()
-    {
+    func setupVisualEffectView() {
         view.addSubview(visualEffectView)
         visualEffectView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         visualEffectView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -113,17 +99,14 @@ extension HotelsViewController
 }
 
 //MARK: - Networking
-extension HotelsViewController
-{
-    func requestData(url: String)
-    {
+extension HotelsViewController {
+    func requestData(url: String) {
         showActivityIndicator(uiView: self.view)
         
         AF.request(url).responseJSON { response in
             self.hideActivityIndicator(self.view)
 
-            switch response.result
-            {
+            switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     self.updateHotelsList(jsonData: json)
@@ -135,26 +118,19 @@ extension HotelsViewController
 }
     
 //MARK: - Update Hotels List
-extension HotelsViewController
-{
-    func updateHotelsList(jsonData: JSON)
-    {
-        if jsonData.exists()
-        {
+extension HotelsViewController {
+    func updateHotelsList(jsonData: JSON) {
+        if jsonData.exists() {
             let rawHotelsList = jsonData[].arrayValue
-            if rawHotelsList.count > 0
-            {
+            if rawHotelsList.count > 0 {
                 parserHotelsList(rawHotelsList: rawHotelsList)
                 
-                DispatchQueue.main.async
-                {
+                DispatchQueue.main.async {
                     self.cellHeights = self.getCellHeights(self.hotels)
                     self.onDataRecieved(self.hotels)
                     self.hotelsCollectionView.reloadData()
                 }
-            }
-            else
-            {
+            } else {
                 showAlert("No Data Available")
             }
         }
@@ -162,10 +138,8 @@ extension HotelsViewController
 }
 
 //MARK: - Parse JSON
-extension HotelsViewController
-{
-    func parserHotelsList(rawHotelsList: [JSON])
-    {
+extension HotelsViewController {
+    func parserHotelsList(rawHotelsList: [JSON]) {
         rawHotelsList.forEach( { hotels.append( Hotel(id: $0["id"].int ?? 0,
                                                       name: $0["name"].string ?? "",
                                                       address: $0["address"].string ?? "",
@@ -177,18 +151,14 @@ extension HotelsViewController
 }
 
 //MARK:- UICollectionView
-extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
-{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return cellHeights.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
-    {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: HotelCollectionViewCell.self),
-                                                         for: indexPath) as? HotelCollectionViewCell
-        {
+                                                         for: indexPath) as? HotelCollectionViewCell {
             cell.initialize(hotels[displayOrder[indexPath.item]])
             
             return cell
@@ -197,27 +167,21 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         return UICollectionViewCell()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: UIScreen.main.bounds.width,
                       height: cellHeights[displayOrder[indexPath.item]])
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
-    {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
-    {
-        if #available(iOS 13.0, *)
-        {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if #available(iOS 13.0, *) {
             let vc = storyboard?.instantiateViewController(identifier: "HotelInfoViewController") as? HotelInfoViewController
             vc?.id = hotels[displayOrder[indexPath.item]].id
             self.navigationController?.pushViewController(vc!, animated: true)
-        }
-        else
-        {
+        } else {
             let vc = storyboard?.instantiateViewController(withIdentifier: "HotelInfoViewController") as? HotelInfoViewController
             vc?.id = hotels[displayOrder[indexPath.item]].id
             self.navigationController?.pushViewController(vc!, animated: true)
@@ -226,61 +190,48 @@ extension HotelsViewController: UICollectionViewDelegate, UICollectionViewDataSo
 }
 
 // MARK:- Fake collection view
-extension HotelsViewController
-{
-    func collectionView(_ displayItemAt: Int)
-    {
+extension HotelsViewController {
+    func collectionView(_ displayItemAt: Int) {
         setCollectionViewCell(hotels[displayOrder[displayItemAt]])
     }
 
-    func setCollectionViewCell(_ dataToDisplay: Hotel?)
-    {
-        if let dataToDisplay = dataToDisplay
-        {
+    func setCollectionViewCell(_ dataToDisplay: Hotel?) {
+        if let dataToDisplay = dataToDisplay {
             print(dataToDisplay.id)
         }
     }
 }
 
 // MARK:- Data handling
-extension HotelsViewController
-{
-    func onDataRecieved (_ raw: [Hotel])
-    {
+extension HotelsViewController {
+    func onDataRecieved (_ raw: [Hotel]) {
         hotels             = raw
         displayOrder       = Array(0..<raw.count)
     }
 }
 
 //MARK:- Utils
-extension HotelsViewController
-{
-    func getCellHeights(_ hotels: [Hotel]) -> [CGFloat]
-    {
+extension HotelsViewController {
+    func getCellHeights(_ hotels: [Hotel]) -> [CGFloat] {
         
         return hotels.map{  $0.name.getHight(for: UIScreen.main.bounds.width - HotelCollectionViewCell.Constants.horisontalPaddings, with: UIFont.boldSystemFont(ofSize: 25)) +
                             $0.address.getHight(for: UIScreen.main.bounds.width - HotelCollectionViewCell.Constants.horisontalPaddings) +
                             HotelCollectionViewCell.Constants.verticalSpacing }
     }
 
-    func getHotelIndexById(_ id: Int) -> Int?
-    {
+    func getHotelIndexById(_ id: Int) -> Int? {
         hotels.enumerated().first{ $0.1.id == id }?.0
     }
 
-    func getVacantRoomCount(_ raw: String) -> Int
-    {
+    func getVacantRoomCount(_ raw: String) -> Int {
         return raw.split(separator: ":").count
     }
 }
 
 // MARK:- Sorting
-extension HotelsViewController
-{
-    func getComparator(_ filterOptions: Set<FilteringOption>) -> ((Hotel, Hotel) -> Bool)?
-    {
-        switch filterOptions.count
-        {
+extension HotelsViewController {
+    func getComparator(_ filterOptions: Set<FilteringOption>) -> ((Hotel, Hotel) -> Bool)? {
+        switch filterOptions.count {
         case 1:
             return getComparatorForSingleOption(filterOptions.first)
         case 2:
@@ -290,10 +241,8 @@ extension HotelsViewController
         }
     }
     
-    func getComparatorForSingleOption(_ filteringOption: FilteringOption?) -> ((Hotel, Hotel) -> Bool)?
-    {
-        switch filteringOption
-        {
+    func getComparatorForSingleOption(_ filteringOption: FilteringOption?) -> ((Hotel, Hotel) -> Bool)? {
+        switch filteringOption {
         case .byDistance:
             return { (lhs, rhs) in lhs.distance < rhs.distance }
         case .byRoomAvailability:
@@ -303,17 +252,12 @@ extension HotelsViewController
         }
     }
     
-    func getComparatorForTwoOptions(_ filterOptions: Set<FilteringOption>) -> ((Hotel, Hotel) -> Bool)?
-    {
-        if filterOptions.contains(.byDistance) && filterOptions.contains(.byRoomAvailability)
-        {
+    func getComparatorForTwoOptions(_ filterOptions: Set<FilteringOption>) -> ((Hotel, Hotel) -> Bool)? {
+        if filterOptions.contains(.byDistance) && filterOptions.contains(.byRoomAvailability) {
             return { (lhs, rhs) -> Bool in
-                if lhs.distance < rhs.distance
-                {
+                if lhs.distance < rhs.distance {
                     return true
-                }
-                else if lhs.distance ==  rhs.distance && lhs.vacantRoomsCount > rhs.vacantRoomsCount
-                {
+                } else if lhs.distance ==  rhs.distance && lhs.vacantRoomsCount > rhs.vacantRoomsCount{
                     return true
                 }
                 
@@ -326,20 +270,13 @@ extension HotelsViewController
 }
 
 // MARK:- Filterable
-extension HotelsViewController
-{
-    func filter(by filteringOptions: Set<FilteringOption>)
-    {
-        if self.filteringOptions != filteringOptions
-        {
-            if filteringOptions.isEmpty
-            {
+extension HotelsViewController {
+    func filter(by filteringOptions: Set<FilteringOption>) {
+        if self.filteringOptions != filteringOptions {
+            if filteringOptions.isEmpty{
                 displayOrder = Array(0..<hotels.count)
-            }
-            else
-            {
-                if let comparator = getComparator(filteringOptions)
-                {
+            } else {
+                if let comparator = getComparator(filteringOptions) {
                     displayOrder = hotels.sorted(by: comparator).compactMap{ getHotelIndexById($0.id) }
                 }
             }
@@ -352,12 +289,9 @@ extension HotelsViewController
 }
 
 // MARK:- UI handlers
-extension HotelsViewController
-{
-    func onSortingTapped()
-    {
-        if let hotelsFilterVC = HotelsFiltersViewController.create(filteringOptions)
-        {
+extension HotelsViewController {
+    func onSortingTapped() {
+        if let hotelsFilterVC = HotelsFiltersViewController.create(filteringOptions) {
             hotelsFilterVC.filterableDegate = self
             hotelsFilterVC.modalPresentationStyle = .formSheet
             present(hotelsFilterVC, animated: true, completion: nil)
@@ -367,10 +301,8 @@ extension HotelsViewController
 }
 
 //MARK: - Acvtivity Indicator
-extension HotelsViewController
-{
-    func showActivityIndicator(uiView: UIView)
-    {
+extension HotelsViewController {
+    func showActivityIndicator(uiView: UIView) {
         let container: UIView = UIView()
         container.frame = uiView.frame
         container.center = uiView.center
@@ -402,8 +334,7 @@ extension HotelsViewController
         self.container = container
     }
     
-    func hideActivityIndicator(_ uiView: UIView)
-    {
+    func hideActivityIndicator(_ uiView: UIView) {
         activityIndicator.stopAnimating()
         activityIndicator.hidesWhenStopped = true
         loadingView.removeFromSuperview()
@@ -412,39 +343,26 @@ extension HotelsViewController
 }
 
 //MARK: - Custom buttom
-@IBDesignable extension UIButton
-{
-    @IBInspectable var borderWidth: CGFloat
-    {
-        set
-        {
+@IBDesignable extension UIButton {
+    @IBInspectable var borderWidth: CGFloat {
+        set {
             layer.borderWidth = newValue
-        }
-        get
-        {
+        } get {
             return layer.borderWidth
         }
     }
-    @IBInspectable var cornerRadius: CGFloat
-    {
-        set
-        {
+    @IBInspectable var cornerRadius: CGFloat {
+        set {
             layer.cornerRadius = newValue
-        }
-        get
-        {
+        } get {
             return layer.cornerRadius
         }
     }
-    @IBInspectable var borderColor: UIColor?
-    {
-        set
-        {
+    @IBInspectable var borderColor: UIColor? {
+        set {
             guard let uiColor = newValue else { return }
             layer.borderColor = uiColor.cgColor
-        }
-        get
-        {
+        } get {
             guard let color = layer.borderColor else { return nil }
             return UIColor(cgColor: color)
         }
@@ -452,10 +370,8 @@ extension HotelsViewController
 }
 
 // MARK:- Error Alert
-extension UIViewController
-{
-    func showAlert(_ errorMassage: String)
-    {
+extension UIViewController {
+    func showAlert(_ errorMassage: String) {
         let alert = UIAlertController(title: "An Error occured", message: errorMassage, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -463,10 +379,8 @@ extension UIViewController
 }
 
 // MARK:  Haptic
-extension HotelsViewController
-{
-    @objc func tapped()
-    {
+extension HotelsViewController {
+    @objc func tapped() {
         let generator = UIImpactFeedbackGenerator(style: .light)
                     generator.impactOccurred()
     }

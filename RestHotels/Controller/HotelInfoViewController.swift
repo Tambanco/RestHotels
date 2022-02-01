@@ -11,13 +11,11 @@ import Alamofire
 import SwiftyJSON
 import SDWebImage
 
-protocol Informational
-{
+protocol Informational {
     
 }
 
-class HotelInfoViewController: UIViewController
-{
+class HotelInfoViewController: UIViewController {
     //MARK: - Properties
     var urlHotelInfo = "https://raw.githubusercontent.com/Tambanco/HotelsJSON/main/"
     var urlImage 	 = "https://raw.githubusercontent.com/Tambanco/HotelsJSON/main/"
@@ -36,10 +34,8 @@ class HotelInfoViewController: UIViewController
 }
 
 //MARK: - Life cycle
-extension HotelInfoViewController
-{
-    override func viewDidLoad()
-    {
+extension HotelInfoViewController {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         requestData(url: createIdURL(urlHotelInfo: urlHotelInfo, id: id))
@@ -47,13 +43,10 @@ extension HotelInfoViewController
 }
 
 //MARK: - Networking
-extension HotelInfoViewController
-{
-    func requestData(url: String)
-    {
+extension HotelInfoViewController {
+    func requestData(url: String) {
         AF.request(url).responseJSON { response in
-            switch response.result
-            {
+            switch response.result {
                 case .success(let value):
                     let json = JSON(value)
                     self.updateUI(jsonData: json)
@@ -64,17 +57,14 @@ extension HotelInfoViewController
         }
     }
     
-    func loadImage(urlImage: String)
-    {
+    func loadImage(urlImage: String) {
         hotelImageView.sd_imageIndicator = SDWebImageActivityIndicator.medium
         hotelImageView.sd_setImage(with: URL(string: urlImage)) { (image, error, cache, urls) in
             
-            if (error != nil)
-            {
+            if (error != nil) {
                 self.hotelImageView.image = UIImage(named: "placeholder.jpg")
             }
-            else
-            {
+            else {
                 self.hotelImageView.image = self.cropToBounds(image: (image ?? UIImage(named: "placeholder.jpg"))!, width: 355, height: 600)
             }
         }
@@ -82,8 +72,7 @@ extension HotelInfoViewController
 }
 
 //MARK: - Crop Image
-extension HotelInfoViewController
-{
+extension HotelInfoViewController {
     func cropToBounds(image: UIImage, width: Double, height: Double) -> UIImage {
 
         let cgimage = image.cgImage!
@@ -94,15 +83,12 @@ extension HotelInfoViewController
         var cgwidth: CGFloat = CGFloat(width)
         var cgheight: CGFloat = CGFloat(height)
 
-        if contextSize.width > contextSize.height
-        {
+        if contextSize.width > contextSize.height {
             posX = 2.0
             posY = 2.0
             cgwidth = contextSize.width
             cgheight = contextSize.height
-        }
-        else
-        {
+        } else {
             posX = 2.0
             posY = 2.0
             cgwidth = contextSize.width
@@ -118,22 +104,17 @@ extension HotelInfoViewController
 }
 
 //MARK: - Update UI
-extension HotelInfoViewController
-{
-    func updateUI(jsonData: JSON)
-    {
-        if jsonData.exists()
-        {
+extension HotelInfoViewController {
+    func updateUI(jsonData: JSON) {
+        if jsonData.exists() {
             let rawHotelInfo = jsonData[].dictionaryValue
-            if rawHotelInfo.count > 0
-            {
+            if rawHotelInfo.count > 0 {
                 parserHotelInfo(rawHotelInfo: rawHotelInfo)
             }
         }
     }
     
-    func setupLabels()
-    {
+    func setupLabels() {
         titleView.font = UIFont.boldSystemFont(ofSize: 25.0)
         titleView.lineBreakMode = .byWordWrapping
         titleView.numberOfLines = 2
@@ -145,10 +126,8 @@ extension HotelInfoViewController
 }
 
 //MARK: - Parse JSON
-extension HotelInfoViewController
-{
-    func parserHotelInfo(rawHotelInfo: [String : JSON])
-    {
+extension HotelInfoViewController {
+    func parserHotelInfo(rawHotelInfo: [String : JSON]) {
         titleView.text = rawHotelInfo["name"]?.stringValue ?? ""
         addressView.text = rawHotelInfo["address"]?.stringValue ?? ""
         starsLabel.text = rawHotelInfo["stars"]?.stringValue ?? ""
@@ -162,17 +141,14 @@ extension HotelInfoViewController
 }
 
 //MARK: - Create URL
-extension HotelInfoViewController
-{
-    func createIdURL(urlHotelInfo: String, id: Int) -> String
-    {
+extension HotelInfoViewController {
+    func createIdURL(urlHotelInfo: String, id: Int) -> String {
         let urlForRequest = "\(urlHotelInfo)" + "\(id)" + ".json"
         
         return urlForRequest
     }
     
-    func createImageURL(urlImage: String, imageID: String) -> String
-    {
+    func createImageURL(urlImage: String, imageID: String) -> String {
         let urlForImage = "\(urlImage)" + "\(imageID)"
         
         return urlForImage
