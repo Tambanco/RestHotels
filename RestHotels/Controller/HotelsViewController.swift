@@ -36,8 +36,7 @@ class HotelsViewController: UIViewController, Filterable, Informational {
     @IBOutlet weak var settingsButton: UIButton!
     
     //MARK: - Buttons actions
-    @IBAction func filtersButtonPressed(_ sender: UIButton)
-    {
+    @IBAction func filtersButtonPressed(_ sender: UIButton) {
         onSortingTapped()
         tapped()
     }
